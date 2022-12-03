@@ -1,0 +1,11 @@
+Rock Paper Scissors:: Wanying Li, Sebastian Ching, Selena Ho, Harry Zhu
+SoftDev
+P01 -- devlog
+
+format: -----------------------------------------------------------------------
+
+firstL -- TIMESTAMP\n
+	explain what changes have been made
+	include errors/bugs discovered (or created)
+	
+-------------------------------------------------------------------------------
