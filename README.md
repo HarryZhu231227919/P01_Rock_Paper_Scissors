@@ -1,1 +1,1 @@
-# P01_Rock_Paper_Scissors
+# P01: Recipes by Rock Paper Scissors

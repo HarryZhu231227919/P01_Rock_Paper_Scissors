@@ -17,7 +17,7 @@ clydeS -- 2999-12-31 23:59
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Rock Paper Scissors
-Wanying Li
+Wanying Li (PM)
 Sebastian Ching
 Selena Ho
 Harry Zhu
@@ -36,7 +36,7 @@ P01
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-fristL -- TIMESTAMP
+SelenaH, SebastianC, WanyingL -- 2022-12-4 18:35
 --------------------------------------------------------------
-<Thing fristL did.>
+worked on design doc
 ==============================================================
