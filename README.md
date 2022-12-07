@@ -12,13 +12,13 @@ Harry:  Frontend/DB
 - [Cocktail API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_TheCocktailDB.md)
 - [Google Translate API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_google-translate-api.md)
 # Launch Codes
-To clone:
-'''
+To clone:  
+```
 git clone git@github.com:wanyingl09/P01_Rock_Paper_Scissors.git
-'''
-To run:
-'''
+```
+To run:  
+```
 cd P01_Rock_Paper_Scissors/
 pip install -r requirements.txt
 python3 ./app/__init__.py
-'''
+```
