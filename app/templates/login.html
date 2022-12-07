@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Welcome to Rock Paper Scissor's recipe page!</title>
+</head>
+
+<body>
+<h1>
+      LOGIN
+    </h1>
+
+
+    <h2>
+      Enter your username and password below to proceed to the home page!
+    </h2>
+    <h3>
+      {{error}}
+    </h3>
+    <form action="/login", method="post">
+      Username: <input type="text" name="username"> </br>
+      Password: <input type="text" name="password"> </br>
+      <input type="submit" name="sub1">
+    </form>
+    <br>
+    <form action="/register", method="post">
+      <a href="/register">register</a>
+    </form>
+
+</body>
+
+
+
+</html>
