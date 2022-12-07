@@ -10,14 +10,15 @@
 # print(res.json()['hits'][0]['recipe']['label']) 
 # print(res.json()['hits'][0]['recipe']['cuisineType']) 
 
-from flask import Flask, render_template, request, session 
+from flask import Flask, render_template, request
+from flask import session, redirect, url_for #not sure why this is not working
 import requests
 
 app = Flask(__name__)
 
 @app.route("/home", methods=['GET', 'POST'])
 def homePage():
-    return render_template("home.html", img_src="", recipe_title="")
+    return render_template("home.html") #img_src="", recipe_title=""
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
