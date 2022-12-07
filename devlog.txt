@@ -68,3 +68,10 @@ and specific recipe page
 - added more detail to site map
 - tested the api we are going to use but haven't been tested yet
 ==============================================================
+
+SelenaH -- 2022-12-7 17:07
+--------------------------------------------------------------
+Added more routes to __init__.py
+Need database methods for checking if user exists and if username and password match before adding the POST requests parts of register and log in
+Submit button on login page just leads to home page as a placeholder until database methods are in place
+==============================================================
