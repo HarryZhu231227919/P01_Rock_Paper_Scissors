@@ -81,19 +81,3 @@ SelenaH -- 2022-12-7 19:57
 added testing.py which is just the file to figure out how to get certain information from the the APIs
 in testing.py, figured out how to get a random recipe from the spoonacular API as well as the recipe title and the image of that random recipe
 ==============================================================
-
-SelenaH, WanyingL -- 2022-12-8 14:03
---------------------------------------------------------------
-updated __init__ to have random recipes for the home page 
-included the api keys and ids into the keys directory
-==============================================================
-
-SebastianC -- 2022-12-8 14:04
---------------------------------------------------------------
-navbar in home page
-==============================================================
-
-HarryZ -- 2022-12-8 14:05
---------------------------------------------------------------
-login methods for the database
-==============================================================
