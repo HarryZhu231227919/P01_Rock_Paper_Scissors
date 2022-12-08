@@ -75,3 +75,8 @@ Added more routes to __init__.py
 Need database methods for checking if user exists and if username and password match before adding the POST requests parts of register and log in
 Submit button on login page just leads to home page as a placeholder until database methods are in place
 ==============================================================
+SelenaH -- 2022-12-7 19:57
+--------------------------------------------------------------
+added testing.py which is just the file to figure out how to get certain information from the the APIs
+in testing.py, figured out how to get a random recipe from the spoonacular API as well as the recipe title and the image of that random recipe
+==============================================================
