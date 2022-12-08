@@ -18,7 +18,10 @@ app = Flask(__name__)
 
 @app.route("/home", methods=['GET', 'POST'])
 def homePage():
-    return render_template("home.html") #img_src="", recipe_title=""
+    # can not figure out how to get a random recipes
+    url =  "https://api.edamam.com/api/recipes/v2"
+    res = requests.get(url, params={'type':'public', 'app_id':"97c8bd4c", 'app_key':"99402c4f99681503751e94b03de8db33", 'q': "biscuits and gravy"}) # 'diet': "balanced"
+    return render_template("home.html", img_src=res.json()['hits'][0]['recipe']['images']['REGULAR']['url'], recipe_title=res.json()['hits'][0]['recipe']['label'])
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
