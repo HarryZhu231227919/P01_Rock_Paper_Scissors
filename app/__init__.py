@@ -3,13 +3,23 @@ from flask import session, redirect, url_for #not sure why this is not working
 import requests
 
 app = Flask(__name__)
+f=open('keys/key_edamam.txt', 'r') #accesses the file
+e_key=f.read() #edamam key
+f=open('keys/key_spoonacular.txt', 'r')
+s_key = f.read() #spoonacular key
+f=open('keys/id_edamam.txt')
+e_id = f.read()
+
 
 @app.route("/home", methods=['GET', 'POST'])
 def homePage():
-    # can not figure out how to get a random recipes
-    url =  "https://api.edamam.com/api/recipes/v2"
-    res = requests.get(url, params={'type':'public', 'app_id':"97c8bd4c", 'app_key':"99402c4f99681503751e94b03de8db33", 'q': "biscuits and gravy"}) # 'diet': "balanced"
-    return render_template("home.html", img_src=res.json()['hits'][0]['recipe']['images']['REGULAR']['url'], recipe_title=res.json()['hits'][0]['recipe']['label'])
+    url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
+    #print(url)
+    res = requests.get(url).json() #request to get random recipe
+    title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+    image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+    recipe_url = res.get('recipes')[0].get('sourceUrl')
+    return render_template("home.html", img_src=image_url, recipe_title=title, url = recipe_url)
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
@@ -34,11 +44,23 @@ def register():
 def randRecipe():
     if (request.method == 'GET'): #just displaying the random recipe page
         return render_template("randrecipe.html") #need to send in the recipe title, image, and ingredients
-    #else: #user requested to see another random recipe
+    else:
+        url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
+        #print(url)
+        res = requests.get(url).json() #request to get random recipe
+        title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+        image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+        recipe_url = res.get('recipes')[0].get('sourceUrl')
+        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url)
+    
 
 @app.route("/specificRecipe", methods=['GET', 'POST'])
 def specificRecipe():
-    return render_template("specificrecipe.html")
+    if (request.method == 'GET'): #just shows the specific recipe form
+        return render_template("specificrecipe.html")
+    else:
+        url = "https://api.edamam.com/api/recipes/v2"
+        requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': request.form[], }) 
 
 if __name__ == "__main__":
     app.debug = True
