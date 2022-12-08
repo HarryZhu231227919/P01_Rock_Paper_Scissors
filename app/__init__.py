@@ -6,11 +6,11 @@ from app_db import *
 app = Flask(__name__)
 app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
-f=open('keys/key_edamam.txt', 'r') #accesses the file
-e_key=f.read() #edamam key
-f=open('keys/key_spoonacular.txt', 'r')
+f = open('app/keys/key_edamam.txt', 'r') #accesses the file
+e_key = f.read() #edamam key
+f = open('app/keys/key_spoonacular.txt', 'r')
 s_key = f.read() #spoonacular key
-f=open('keys/id_edamam.txt')
+f = open('app/keys/id_edamam.txt')
 e_id = f.read()
 
 @app.route("/home", methods=['GET', 'POST'])
@@ -21,7 +21,7 @@ def homePage():
     title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
     image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
     recipe_url = res.get('recipes')[0].get('sourceUrl')
-    return render_template("home.html", img_src=image_url, recipe_title=title, url = recipe_url)
+    return render_template("home.html", img_src = image_url, recipe_title = title, url = recipe_url)
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
@@ -34,8 +34,8 @@ def login_page():
             if(checkuser(request.form.get("username"),request.form.get("password"))): #username matches the password
                 session["username"] = request.form.get("username")
                 return redirect(url_for("homePage"))
-            return render_template("login.html", error="Username and password don't match.")
-        return render_template("login.html", error="User does not exist.")
+            return render_template("login.html", error = "Username and password don't match.")
+        return render_template("login.html", error = "User does not exist.")
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -64,11 +64,11 @@ def specificRecipe():
         return render_template("specificrecipe.html")
     else:
         url = "https://api.edamam.com/api/recipes/v2"
-        #requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': request.form[], }) 
+        #requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': request.form.get[], }) 
 
 @app.route("/logout")
 def logout():
-    session.pop("username",None) # removes session info
+    session.pop("username", None) # removes session info
     return redirect(url_for("login_page")) 
 
 if __name__ == "__main__":
