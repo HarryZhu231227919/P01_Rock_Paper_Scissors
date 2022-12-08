@@ -63,8 +63,7 @@ summary of feedback:
 - need proposal/abstract of our project
 
 delineation and nature of DD revisions:
-- added previews of our Home page, Random Recipe page, 
-and specific recipe page
+- added previews of our Home page, Random Recipe page, and specific recipe page
 - added more detail to site map
 - tested the api we are going to use but haven't been tested yet
 ==============================================================
@@ -76,10 +75,10 @@ Need database methods for checking if user exists and if username and password m
 Submit button on login page just leads to home page as a placeholder until database methods are in place
 ==============================================================  
 
-SelenaH -- 2022-12-7 19:57
+WanyingL -- 2022-12-7 19:02
 --------------------------------------------------------------
-added testing.py which is just the file to figure out how to get certain information from the the APIs
-in testing.py, figured out how to get a random recipe from the spoonacular API as well as the recipe title and the image of that random recipe
+got image and title from api displayed on Home page
+- worked on home.html and __init__.py
 ==============================================================
 
 SelenaH -- 2022-12-7 19:57
