@@ -53,7 +53,21 @@ c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text, la
 c.execute("""INSERT INTO spoonacular_cuisines VALUES("African", "sw")""")
 c.execute("""INSERT INTO spoonacular_cuisines VALUES("American", "en")""")
 c.execute("""INSERT INTO spoonacular_cuisines VALUES("British", "en")""")
-# to be continued https://spoonacular.com/food-api/docs#Cuisines, https://rapidapi.com/googlecloud/api/google-translate1/details
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Cajun", "")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Caribbean", "en")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Chinese", "zh-CN")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Eastern European", "bg")""")  #bulgaria
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("European", "en")""") #english
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("French", "fr")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("German", "de")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Greek", "el")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Indian", "")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Irish", "ga")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Italian", "it")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Japanese", "ja")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Jewish", "he")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Korean", "ko")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("Latin American", "pt")""") #portuguese
 
 def get_lang(cursine_type):
     c = db.cursor()
