@@ -5,11 +5,17 @@ from app_db import *
 app = Flask(__name__)
 app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
-f = open('keys/key_edamam.txt', 'r') #accesses the file
+# f = open('keys/key_edamam.txt', 'r') #accesses the file
+# e_key = f.read() #edamam key
+# f = open('keys/key_spoonacular.txt', 'r')
+# s_key = f.read() #spoonacular key
+# f = open('keys/id_edamam.txt')
+# e_id = f.read()
+f = open('app/keys/key_edamam.txt', 'r') #accesses the file
 e_key = f.read() #edamam key
-f = open('keys/key_spoonacular.txt', 'r')
+f = open('app/keys/key_spoonacular.txt', 'r')
 s_key = f.read() #spoonacular key
-f = open('keys/id_edamam.txt')
+f = open('app/keys/id_edamam.txt')
 e_id = f.read()
 
 @app.route("/", methods=['GET', 'POST'])
@@ -33,7 +39,19 @@ def homePage():
     res = requests.get(url).json() #request to get random recipe
     title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
     image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-    recipe_url = res.get('recipes')[0].get('sourceUrl')
+    recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
+    while recipe_url.__contains__(title.lower().replace(" ", "-")) != True: #double checks if the link is valid
+        res = requests.get(url).json()
+        title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+        image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+        recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
+    # print(title.lower().replace(" ", "-"))
+    # print(recipe_url.strip('-'))
+    # print(recipe_url.__contains__(title.lower().replace(" ", "-")))
+    # if title.replace(" ", "-") in recipe_url:
+    #     print("TRUEEEEEEEEEEE")
+    # else: 
+    #     print("FALSEEEEE")
     return render_template("home.html", img_src = image_url, recipe_title = title, url = recipe_url)
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -58,10 +76,12 @@ def randRecipe():
     else:
         url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
         #print(url)
+        print()
         res = requests.get(url).json() #request to get random recipe
         title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
         image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
         recipe_url = res.get('recipes')[0].get('sourceUrl')
+        print(recipe_url.__contains__(title))
         return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url)
 
 # @app.route("/randRecipe/translatedTitle", methods=['GET'])    
