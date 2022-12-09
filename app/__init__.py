@@ -13,16 +13,6 @@ s_key = f.read() #spoonacular key
 f = open('app/keys/id_edamam.txt')
 e_id = f.read()
 
-@app.route("/home", methods=['GET', 'POST'])
-def homePage():
-    url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
-    #print(url)
-    res = requests.get(url).json() #request to get random recipe
-    title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
-    image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-    recipe_url = res.get('recipes')[0].get('sourceUrl')
-    return render_template("home.html", img_src = image_url, recipe_title = title, url = recipe_url)
-
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
     if( ("username" in session) and (user_exists(session.get("username"))) ): # checks to see if the user was already logged in
@@ -37,12 +27,30 @@ def login_page():
             return render_template("login.html", error = "Username and password don't match.")
         return render_template("login.html", error = "User does not exist.")
 
+@app.route("/home", methods=['GET', 'POST'])
+def homePage():
+    url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
+    #print(url)
+    res = requests.get(url).json() #request to get random recipe
+    title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+    image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+    recipe_url = res.get('recipes')[0].get('sourceUrl')
+    return render_template("home.html", img_src = image_url, recipe_title = title, url = recipe_url)
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if (request.method == 'GET'):
         return render_template("register.html")
     #else:
         #do the registering checks
+        #store user's allergies
+
+@app.route("/profile", methods=['GET', 'POST'])
+# def profile():
+#     if (request.method == 'GET'):
+#         return render_template("profile.html")
+#     else: # when user makes an edit to their allergies
+#         # return the profile page with updated info
 
 @app.route("/randRecipe", methods=['GET', 'POST'])
 def randRecipe():
@@ -64,7 +72,14 @@ def specificRecipe():
         return render_template("specificrecipe.html")
     else:
         url = "https://api.edamam.com/api/recipes/v2"
-        #requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': request.form.get[], }) 
+        # # to prepare query string to search in api
+        # ingredient_qstring = ""
+        # for i in range(5):
+        #     name = 'ingr' + i
+        #     if requests.form[name] != "":
+        #         ingredient_qstring += requests.form[name]
+        # # allergies string
+        #requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': ingredient_qstring, }) 
 
 @app.route("/logout")
 def logout():
