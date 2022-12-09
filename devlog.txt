@@ -111,3 +111,11 @@ added sessions
 login page functional now
 logout button works 
 ==============================================================
+
+WanyingL -- 2022-12-8 21:33
+--------------------------------------------------------------
+worked on api use on specific recipe
+hyperlinked pages on nav bar
+worked on translate page and related api
+hard-coded cusine table and created method to get corssponding language
+==============================================================

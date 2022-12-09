@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request
-from flask import session, redirect, url_for #not sure why this is not working
+from flask import Flask, render_template, request, session, redirect, url_for
 import requests
 from app_db import *
 
@@ -64,7 +63,13 @@ def randRecipe():
         image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
         recipe_url = res.get('recipes')[0].get('sourceUrl')
         return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url)
-    
+
+# @app.route("/randRecipe/translatedTitle", methods=['GET'])    
+# def translate(image_url, title, recipe_url):
+#     # a method to get a corssponding language to the curisne type from db
+#     # get the translation through google translate api
+#     # # translation = 
+#     return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url, translation = translation)
 
 @app.route("/specificRecipe", methods=['GET', 'POST'])
 def specificRecipe():

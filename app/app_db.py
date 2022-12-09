@@ -4,8 +4,9 @@ DB_FILE = "SITE.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor()
 
+# User Table
 c.execute("CREATE TABLE if not Exists users(username TEXT, password TEXT);")
-c.close()
+#c.close()
 
 def checkuser(username, password): #checks if user's login is correct
     c = db.cursor()
@@ -45,5 +46,26 @@ def create_acc(username, password):
 
 #print(create_acc("user", "pass"))
 #print(checkuser("user", "pas"))
+
+# Allergies Table
+# Cuisine Table
+db.execute("DROP TABLE if exists spoonacular_cuisines;")
+c.execute("CREATE TABLE spoonacular_cuisines(cursine_type text, language text);")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("African", "sw")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("American", "en")""")
+c.execute("""INSERT INTO spoonacular_cuisines VALUES("British", "en")""")
+# to be continued https://spoonacular.com/food-api/docs#Cuisines, https://rapidapi.com/googlecloud/api/google-translate1/details
+
+def get_lang(cursine_type):
+    c = db.cursor()
+    c.execute('SELECT language FROM spoonacular_cuisines WHERE cursine_type = ?;', [str(cursine_type)])
+    lang = c.fetchone()[0]
+    if lang is None:
+        return ""
+    else:
+        c.close()
+        return lang
+
+#print(get_lang("African"))    
 
 db.commit()
