@@ -5,11 +5,11 @@ from app_db import *
 app = Flask(__name__)
 app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
-f = open('app/keys/key_edamam.txt', 'r') #accesses the file
+f = open('keys/key_edamam.txt', 'r') #accesses the file
 e_key = f.read() #edamam key
-f = open('app/keys/key_spoonacular.txt', 'r')
+f = open('keys/key_spoonacular.txt', 'r')
 s_key = f.read() #spoonacular key
-f = open('app/keys/id_edamam.txt')
+f = open('keys/id_edamam.txt')
 e_id = f.read()
 
 @app.route("/", methods=['GET', 'POST'])
