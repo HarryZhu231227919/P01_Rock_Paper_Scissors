@@ -49,8 +49,7 @@ def create_acc(username, password):
 
 # Allergies Table
 # Cuisine Table
-db.execute("DROP TABLE if exists spoonacular_cuisines;")
-c.execute("CREATE TABLE spoonacular_cuisines(cursine_type text, language text);")
+c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text, language text);")
 c.execute("""INSERT INTO spoonacular_cuisines VALUES("African", "sw")""")
 c.execute("""INSERT INTO spoonacular_cuisines VALUES("American", "en")""")
 c.execute("""INSERT INTO spoonacular_cuisines VALUES("British", "en")""")
