@@ -4,7 +4,7 @@ DB_FILE = "SITE.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor()
 
-# User Table
+# User Table==========================================================================================
 c.execute("CREATE TABLE if not Exists users(user_id int primary key, username TEXT, password TEXT)")
 #c.close()
 
@@ -52,10 +52,10 @@ def create_acc(username, password):
 # print(checkuser("user", "pas"))
 print(create_acc("selena", "pass"))
 
-# Allergies Table
+# Allergies Table===============================================================================
 c.execute("CREATE TABLE if not exists allergies(user_id int primary key, crustacean int, dairy int, egg int, fish int, gluten int, peanut int, sesame int, shellfish int, soy int, treenut int, wheat int)") #sqlite stores booleans as ints with 0 as false and 1 as true
 #method to insert into the allergies table
-def insert_allergy(id,allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
+def insert_allergy(id, allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
     c = db.cursor()
     c.execute('INSERT INTO allergies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', (id, allergy[0], allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10]))
     c.close()
@@ -63,7 +63,7 @@ def insert_allergy(id,allergy): #allergy is a tuple that holds the int value (0 
 
 #also need method to update the allergies table with the users changes
 
-# Cuisine Table
+# Cuisine Table===========================================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")
 try: 
     c.executescript("""

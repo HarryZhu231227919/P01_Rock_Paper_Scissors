@@ -5,18 +5,22 @@ from app_db import *
 app = Flask(__name__)
 app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
-f = open('keys/key_edamam.txt', 'r') #accesses the file
-e_key = f.read() #edamam key
-f = open('keys/key_spoonacular.txt', 'r')
-s_key = f.read() #spoonacular key
-f = open('keys/id_edamam.txt')
-e_id = f.read()
-# f = open('app/keys/key_edamam.txt', 'r') #accesses the file
+# f = open('keys/key_edamam.txt', 'r') #accesses the file
 # e_key = f.read() #edamam key
-# f = open('app/keys/key_spoonacular.txt', 'r')
+# f = open('keys/key_spoonacular.txt', 'r')
 # s_key = f.read() #spoonacular key
-# f = open('app/keys/id_edamam.txt')
+# f = open('app/keys/key_googleTranslate.txt')
+# g_key = f.read() #google translate key
+# f = open('keys/id_edamam.txt')
 # e_id = f.read()
+f = open('app/keys/key_edamam.txt', 'r') #accesses the file
+e_key = f.read() #edamam key
+f = open('app/keys/key_spoonacular.txt', 'r')
+s_key = f.read() #spoonacular key
+f = open('app/keys/key_googleTranslate.txt')
+g_key = f.read() #google translate key
+f = open('app/keys/id_edamam.txt')
+e_id = f.read()
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
@@ -85,7 +89,7 @@ def randRecipe():
             recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
             cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
         #print(res.get('recipes')[0])
-        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine)
+        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine, clicked = False)
     else:
         url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
         res = requests.get(url).json() #request to get random recipe
@@ -99,31 +103,46 @@ def randRecipe():
             image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
             recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
             cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
-        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine)
+        return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, cuisine = cuisine, clicked = False)
 
 #@app.route("/randRecipe/translate#image_url=<string:image_url>&title=<string:title>&recipe_url=<string:recipe_url>&cuisine=<string:cuisine>", methods=['GET'])
-@app.route("/randRecipe/translate/<string:title>/<path:cuisine>/<path:recipe_url>/<path:image_url>", methods=['GET'])    
+@app.route("/randRecipe/translate/<string:title>/<path:cuisine>/<path:recipe_url>/<path:image_url>", methods = ['GET'])    
 #@app.route("/randRecipe/translate/<image_url>/<title>/<recipe_url>/<cuisine>", methods=['GET'])  
 def translate(image_url, title, recipe_url, cuisine):
-    print("---------")
-    print(request.path)
-    print("----------")
-    print(image_url)
-    print(title)
-    print(recipe_url)
+    # print("---------")
+    # print(request.path)
+    # print("----------")
+    # print(image_url)
+    # print(title)
+    # print(recipe_url)
     print(cuisine)
     path = request.path
     index1= (path.index("http")) #index of the first time http shows up which is for the recipe url
     index2 = (path.index("http", path.index("http")+1)) #index of the second time http shows up which is for the image url
     recipe = path[index1:index2]
     image = path[index2:]
-    print("======")
-    print(recipe, image)
-    print("=====")
+    # print("======")
+    # print(recipe, image)
+    # print("=====")
     # get the translation through google translate api
-    translation = cuisine + "under construction"
-    print(translation)
-    return render_template("randrecipe.html", img_src=image, recipe_title=title, recipe_url = recipe, translation = translation)
+    url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
+    if cuisine == "None":
+        target_lan = "ja"
+    else:
+        target_lan = get_lang(cuisine)
+    payload = f"source=en&target={target_lan}&q={title}" 
+    headers = {
+        "content-type": "application/x-www-form-urlencoded",
+        "Accept-Encoding": "application/gzip",
+        "X-RapidAPI-Key": str(g_key),
+        "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+    }
+    response = requests.request("POST", url, data=payload, headers=headers)
+    # {"data":{"translations":[{"translatedText":"スコッチエッグ"}]}}
+    # print(response.json().get("data").get("translations")[0].get("translatedText"))
+    translation = response.json().get("data").get("translations")[0].get("translatedText")
+    # print(translation)
+    return render_template("randrecipe.html", img_src = image, recipe_title = title, recipe_url = recipe, translation = translation, clicked = True)
 
 
 @app.route("/specificRecipe", methods=['GET', 'POST'])

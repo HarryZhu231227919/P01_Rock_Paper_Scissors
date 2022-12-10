@@ -26,8 +26,32 @@
 # # print(res.get('recipes')[0].get('image')) #gets the recipe image of that random recipe
 
 #testing string indexing for the url
-string = "/randRecipe/translate/Jambalaya Stew/None/https://www.foodista.com/recipe/HG72GN7R/jambalaya-stew/https://spoonacular.com/recipeImages/www.foodista.com/recipe/HG72GN7R/jambalaya-stew/https://spoonacular.com/recipeImages/648432-556x370.jpg"
-index1= (string.index("http"))
-index2 = (string.index("http", string.index("http")+1))
-print(string[index1:index2])
-print(string[index2:])
+# string = "/randRecipe/translate/Jambalaya Stew/None/https://www.foodista.com/recipe/HG72GN7R/jambalaya-stew/https://spoonacular.com/recipeImages/www.foodista.com/recipe/HG72GN7R/jambalaya-stew/https://spoonacular.com/recipeImages/648432-556x370.jpg"
+# index1= (string.index("http"))
+# index2 = (string.index("http", string.index("http")+1))
+# print(string[index1:index2])
+# print(string[index2:])
+
+#testing google translate api
+import requests
+
+f = open('app/keys/key_googleTranslate.txt')
+g_key = f.read() #google translate key
+print(g_key)
+
+url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
+
+q = "pinnapple fired rice!"
+target = "ja"
+payload = f"source=en&target={target}&q={q}" 
+headers = {
+	"content-type": "application/x-www-form-urlencoded",
+	"Accept-Encoding": "application/gzip",
+	"X-RapidAPI-Key": str(g_key),
+	"X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+
