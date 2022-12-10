@@ -63,6 +63,8 @@ def insert_allergy(id, allergy): #allergy is a tuple that holds the int value (0
 
 #also need method to update the allergies table with the users changes
 
+#need to make test cases for both methods
+
 # Cuisine Table===========================================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")
 try: 
@@ -94,6 +96,7 @@ def get_lang(cursine_type):
     c.execute('SELECT language FROM spoonacular_cuisines WHERE cursine_type = ?;', [str(cursine_type)])
     lang = c.fetchone()[0]
     if lang is None:
+        c.close()
         return ""
     else:
         c.close()

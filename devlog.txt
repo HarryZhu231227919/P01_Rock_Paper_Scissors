@@ -137,7 +137,6 @@ dynamic url
 - I was able to get all the information from the orgainal recipe. 
 Since agrements like recipe URL was cut off even with coverter path,
 I couldn't feed these argument to flask to render a page.
-
 ==============================================================
 
 SelenaH -- 2022-12-10 11:56
@@ -145,10 +144,17 @@ SelenaH -- 2022-12-10 11:56
 fixed the problem Wanying and I were having yesterday with the recipe urls and the image urls getting passed to the translate page
 translated random recipe now displays the recipe image properly and links to the recipe properly
 did this by using request.path to get the path as a string and did string indexing and slicing to get the urls
-
 ==============================================================
 
 HarryZ -- 2022-12-10 3:32
 --------------------------------------------------------------
 I created a method that will take in the parameters, id and allergy, and inserts the values of whether a user is 
 allergic to something into the table. The allergy variable will be a tuple that stores int values. 0 will act as false and 1 will act as true.
+==============================================================
+
+WanyingL -- 2022-12-9 21:33
+--------------------------------------------------------------
+finished getting translation of recipe title from google translate api
+- set default translation to Japanese if no cuisine type
+made translate button only shown when the button has not been clicked
+==============================================================
