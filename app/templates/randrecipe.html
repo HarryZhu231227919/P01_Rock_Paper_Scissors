@@ -40,10 +40,18 @@
   <br>
   <p>Random Recipe:</p>
   <img src="{{img_src}}">
-  <a href={{url}}>
+  <a href={{recipe_url}}>
     <h2>{{recipe_title}}</h2>
   </a>
-  <p>{{ingredients}}</p>
+  <p>{{ingrdients}}</p>
+  <form action="/randRecipe" method="GET">
+    <button type="submit">get a random recipe</button>
+  </form>
+  <form action="/randRecipe/translate#image_url={{img_src}}&title={{recipe_title}}&recipe_url={{recipe_url}}&cuisine={{cuisine}}" > 
+    <button type="submit">translate the title</button> <!--write an if statement when the recipe doesn't have a specified cuisine, don't show the translate freature-->
+  </form>
+  <h1>{{cuisine}}</h1>
+  <h1>{{translation}}</h1>
 </body>
 
 </html>

@@ -72,24 +72,41 @@ def register():
 @app.route("/randRecipe", methods=['GET', 'POST'])
 def randRecipe():
     if (request.method == 'GET'): #just displaying the random recipe page
-        return render_template("randrecipe.html") #need to send in the recipe title, image, and ingredients
-    else:
         url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
-        #print(url)
-        print()
         res = requests.get(url).json() #request to get random recipe
         title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
         image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-        recipe_url = res.get('recipes')[0].get('sourceUrl')
-        print(recipe_url.__contains__(title))
-        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url)
+        recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
+        cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
+        while recipe_url.__contains__(title.lower().replace(" ", "-")) != True: #double checks if the link is valid
+            res = requests.get(url).json()
+            title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+            image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+            recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
+            cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
+        #print(res.get('recipes')[0])
+        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine)
+    else:
+        url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
+        res = requests.get(url).json() #request to get random recipe
+        title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+        image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+        recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
+        cuisine = res.get('recipes')[0].get('cuisines') #gets the recipe cuisine type
+        while recipe_url.__contains__(title.lower().replace(" ", "-")) != True: #double checks if the link is valid
+            res = requests.get(url).json()
+            title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
+            image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
+            recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
+            cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
+        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine)
 
-# @app.route("/randRecipe/translatedTitle", methods=['GET'])    
-# def translate(image_url, title, recipe_url):
-#     # a method to get a corssponding language to the curisne type from db
-#     # get the translation through google translate api
-#     # # translation = 
-#     return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url, translation = translation)
+@app.route("/randRecipe/translate#image_url=<string:image_url>&title=<string:title>&recipe_url=<string:recipe_url>&cuisine=<string:cuisine>", methods=['GET'])    
+def translate(image_url, title, recipe_url, cuisine):
+    # get the translation through google translate api
+    translation = cuisine + "under construction"
+    print(translation)
+    return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url, translation = translation)
 
 @app.route("/specificRecipe", methods=['GET', 'POST'])
 def specificRecipe():
