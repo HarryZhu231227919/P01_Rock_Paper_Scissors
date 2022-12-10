@@ -126,3 +126,16 @@ fixed bugs in database methods (spoonacular_cuisines table inserts every time __
 updated create_acc to have user_id
 created allergies table
 ==============================================================
+
+WanyingL -- 2022-12-8 21:33
+--------------------------------------------------------------
+worked on randRecipe Page (flask) with Selena
+added buttons to generate a new recipe and to translate in randRecipe.html
+made sure all links from api are valid
+issues:*******
+dynamic url
+- I was able to get all the information from the orgainal recipe. 
+Since agrements like recipe URL was cut off even with coverter path,
+I couldn't feed these argument to flask to render a page.
+
+==============================================================

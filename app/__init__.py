@@ -101,8 +101,14 @@ def randRecipe():
             cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
         return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine)
 
-@app.route("/randRecipe/translate#image_url=<string:image_url>&title=<string:title>&recipe_url=<string:recipe_url>&cuisine=<string:cuisine>", methods=['GET'])    
+#@app.route("/randRecipe/translate#image_url=<string:image_url>&title=<string:title>&recipe_url=<string:recipe_url>&cuisine=<string:cuisine>", methods=['GET'])
+@app.route("/randRecipe/translate/<path:image_url>/<string:title>/<path:recipe_url>/<path:cuisine>", methods=['GET'])    
+#@app.route("/randRecipe/translate/<image_url>/<title>/<recipe_url>/<cuisine>", methods=['GET'])  
 def translate(image_url, title, recipe_url, cuisine):
+    print(image_url)
+    print(title)
+    print(recipe_url)
+    print(cuisine)
     # get the translation through google translate api
     translation = cuisine + "under construction"
     print(translation)
