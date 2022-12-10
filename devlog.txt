@@ -119,3 +119,10 @@ hyperlinked pages on nav bar
 worked on translate page and related api
 hard-coded cusine table and created method to get corssponding language
 ==============================================================
+
+SelenaH -- 2022-12-9 20:42
+--------------------------------------------------------------
+fixed bugs in database methods (spoonacular_cuisines table inserts every time __init__ runs, users table doesn't have user_id)
+updated create_acc to have user_id
+created allergies table
+==============================================================
