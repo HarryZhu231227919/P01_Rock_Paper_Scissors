@@ -122,12 +122,12 @@ hard-coded cusine table and created method to get corssponding language
 
 SelenaH -- 2022-12-9 20:42
 --------------------------------------------------------------
-fixed bugs in database methods (spoonacular_cuisines table inserts every time __init__ runs, users table doesn't have user_id)
+fixed bugs in database methods (fixed how spoonacular_cuisines table inserts every time __init__ runs and how users table didn't have user_id)
 updated create_acc to have user_id
 created allergies table
 ==============================================================
 
-WanyingL -- 2022-12-8 21:33
+WanyingL -- 2022-12-9 21:33
 --------------------------------------------------------------
 worked on randRecipe Page (flask) with Selena
 added buttons to generate a new recipe and to translate in randRecipe.html
@@ -139,3 +139,9 @@ Since agrements like recipe URL was cut off even with coverter path,
 I couldn't feed these argument to flask to render a page.
 
 ==============================================================
+
+SelenaH -- 2022-12-10 11:56
+--------------------------------------------------------------
+fixed the problem Wanying and I were having yesterday with the recipe urls and the image urls getting passed to the translate page
+translated random recipe now displays the recipe image properly and links to the recipe properly
+did this by using request.path to get the path as a string and did string indexing and slicing to get the urls

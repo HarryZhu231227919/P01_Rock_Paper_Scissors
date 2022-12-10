@@ -5,18 +5,18 @@ from app_db import *
 app = Flask(__name__)
 app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
-# f = open('keys/key_edamam.txt', 'r') #accesses the file
-# e_key = f.read() #edamam key
-# f = open('keys/key_spoonacular.txt', 'r')
-# s_key = f.read() #spoonacular key
-# f = open('keys/id_edamam.txt')
-# e_id = f.read()
-f = open('app/keys/key_edamam.txt', 'r') #accesses the file
+f = open('keys/key_edamam.txt', 'r') #accesses the file
 e_key = f.read() #edamam key
-f = open('app/keys/key_spoonacular.txt', 'r')
+f = open('keys/key_spoonacular.txt', 'r')
 s_key = f.read() #spoonacular key
-f = open('app/keys/id_edamam.txt')
+f = open('keys/id_edamam.txt')
 e_id = f.read()
+# f = open('app/keys/key_edamam.txt', 'r') #accesses the file
+# e_key = f.read() #edamam key
+# f = open('app/keys/key_spoonacular.txt', 'r')
+# s_key = f.read() #spoonacular key
+# f = open('app/keys/id_edamam.txt')
+# e_id = f.read()
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
@@ -102,17 +102,29 @@ def randRecipe():
         return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine)
 
 #@app.route("/randRecipe/translate#image_url=<string:image_url>&title=<string:title>&recipe_url=<string:recipe_url>&cuisine=<string:cuisine>", methods=['GET'])
-@app.route("/randRecipe/translate/<path:image_url>/<string:title>/<path:recipe_url>/<path:cuisine>", methods=['GET'])    
+@app.route("/randRecipe/translate/<string:title>/<path:cuisine>/<path:recipe_url>/<path:image_url>", methods=['GET'])    
 #@app.route("/randRecipe/translate/<image_url>/<title>/<recipe_url>/<cuisine>", methods=['GET'])  
 def translate(image_url, title, recipe_url, cuisine):
+    print("---------")
+    print(request.path)
+    print("----------")
     print(image_url)
     print(title)
     print(recipe_url)
     print(cuisine)
+    path = request.path
+    index1= (path.index("http")) #index of the first time http shows up which is for the recipe url
+    index2 = (path.index("http", path.index("http")+1)) #index of the second time http shows up which is for the image url
+    recipe = path[index1:index2]
+    image = path[index2:]
+    print("======")
+    print(recipe, image)
+    print("=====")
     # get the translation through google translate api
     translation = cuisine + "under construction"
     print(translation)
-    return render_template("randrecipe.html", img_src=image_url, recipe_title=title, url = recipe_url, translation = translation)
+    return render_template("randrecipe.html", img_src=image, recipe_title=title, recipe_url = recipe, translation = translation)
+
 
 @app.route("/specificRecipe", methods=['GET', 'POST'])
 def specificRecipe():
