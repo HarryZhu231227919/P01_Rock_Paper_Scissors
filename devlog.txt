@@ -158,3 +158,8 @@ finished getting translation of recipe title from google translate api
 - set default translation to Japanese if no cuisine type
 made translate button only shown when the button has not been clicked
 ==============================================================
+
+HarryZ -- 2022-12-11 14:26
+--------------------------------------------------------------
+I added a method for getting all the allergy info from a particular user.
+==============================================================
