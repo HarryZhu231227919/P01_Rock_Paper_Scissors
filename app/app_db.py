@@ -62,7 +62,16 @@ def insert_allergy(id, allergy): #allergy is a tuple that holds the int value (0
     db.commit()
 
 #also need method to update the allergies table with the users changes
-
+def get_allergy(allergy,user_id):
+    c = db.cursor()
+    c.execute('SELECT * FROM allergies WHERE user_id = ?;', [str(user_id)])
+    allergy_info = c.fetchone()[0]
+    if allergy_info is None:
+        c.close()
+        return ""
+    else:
+        c.close()
+        return allergy_info
 #need to make test cases for both methods
 
 # Cuisine Table===========================================================================================
