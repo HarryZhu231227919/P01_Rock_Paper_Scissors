@@ -62,7 +62,11 @@ def homePage():
 def register():
     if (request.method == 'GET'):
         return render_template("register.html")
-    #else:
+    else:
+        if (create_acc(request.form.get("username"), request.form.get("password"))):
+            return render_template("register.html", error="User already exists.")
+        else:
+            return redirect(url_for("login_page"))
         #do the registering checks
         #store user's allergies
 

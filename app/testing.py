@@ -20,10 +20,12 @@
 # # print(res.json()['hits'][0]['recipe']['cuisineType']) 
 
 # #testing the spoonacular API here: 
-# # import requests
-# # res = requests.get("https://api.spoonacular.com/recipes/random?apiKey=12643cbc7c944fc18030685f17426c85").json() #request to get random recipe
-# # print(res.get('recipes')[0].get('title')) #gets the recipe title of that random recipe
-# # print(res.get('recipes')[0].get('image')) #gets the recipe image of that random recipe
+import requests
+#res = requests.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=12643cbc7c944fc18030685f17426c85").json() #request to get random recipe
+res = requests.get("https://api.spoonacular.com/recipes/random?apiKey=12643cbc7c944fc18030685f17426c85&number=1&intolerances=seafood,dairy").json()
+print(res.get('recipes')[0].get('title')) #gets the recipe title of that random recipe
+#print(res.get('recipes')[0].get('image')) #gets the recipe image of that random recipe
+
 
 #testing string indexing for the url
 # string = "/randRecipe/translate/Jambalaya Stew/None/https://www.foodista.com/recipe/HG72GN7R/jambalaya-stew/https://spoonacular.com/recipeImages/www.foodista.com/recipe/HG72GN7R/jambalaya-stew/https://spoonacular.com/recipeImages/648432-556x370.jpg"
@@ -33,25 +35,25 @@
 # print(string[index2:])
 
 #testing google translate api
-import requests
+# import requests
 
-f = open('app/keys/key_googleTranslate.txt')
-g_key = f.read() #google translate key
-print(g_key)
+# f = open('app/keys/key_googleTranslate.txt')
+# g_key = f.read() #google translate key
+# print(g_key)
 
-url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
+# url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
 
-q = "pinnapple fired rice!"
-target = "ja"
-payload = f"source=en&target={target}&q={q}" 
-headers = {
-	"content-type": "application/x-www-form-urlencoded",
-	"Accept-Encoding": "application/gzip",
-	"X-RapidAPI-Key": str(g_key),
-	"X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
-}
+# q = "pinnapple fired rice!"
+# target = "ja"
+# payload = f"source=en&target={target}&q={q}" 
+# headers = {
+# 	"content-type": "application/x-www-form-urlencoded",
+# 	"Accept-Encoding": "application/gzip",
+# 	"X-RapidAPI-Key": str(g_key),
+# 	"X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+# }
 
-response = requests.request("POST", url, data=payload, headers=headers)
+# response = requests.request("POST", url, data=payload, headers=headers)
 
-print(response.text)
+# print(response.text)
 
