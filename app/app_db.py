@@ -21,14 +21,18 @@ def checkuser(username, password): #checks if user's login is correct
 
 def user_exists(username): #checks if a user exists
     c = db.cursor()
-    result = c.execute("select username from users where username = ?", (str(username),))
-    try:
-        c.fetchone()[0] == username
-        c.close()
-        return True
-    except:
+    result = c.execute('SELECT username FROM users WHERE username = ?;',[str(username)])
+    user = c.fetchone()
+    if user is None:
         c.close()
         return False
+    else:
+        c.close()
+        return username == user[0]
+
+
+
+  
         
 #returns TRUE if another account exists with user, otherwise creates acc
 def create_acc(username, password): 
@@ -48,9 +52,11 @@ def create_acc(username, password):
         c.close()
         return True
 
-# print(create_acc("user", "pass"))
-# print(checkuser("user", "pas"))
 print(create_acc("selena", "pass"))
+print(user_exists("user"))
+print(user_exists("selena"))
+#print(create_acc("selena", "pass"))
+print(checkuser("selena", "pas")) #should return false because the password is missing a s
 
 # Allergies Table===============================================================================
 c.execute("CREATE TABLE if not exists allergies(user_id int primary key, crustacean int, dairy int, egg int, fish int, gluten int, peanut int, sesame int, shellfish int, soy int, treenut int, wheat int)") #sqlite stores booleans as ints with 0 as false and 1 as true
