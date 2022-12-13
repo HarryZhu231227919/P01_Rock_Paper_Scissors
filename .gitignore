@@ -1,3 +1,12 @@
+# date base
+SITE.db
+
+# api keys
+id_edamam.txt
+key_edamam.txt
+key_googleTranslate.txt
+key_spoonacular.txt 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
