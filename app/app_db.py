@@ -21,7 +21,7 @@ def checkuser(username, password): #checks if user's login is correct
 
 def user_exists(username): #checks if a user exists
     c = db.cursor()
-    result = c.execute('SELECT username FROM users WHERE username = ?;',[str(username)])
+    c.execute('SELECT username FROM users')
     user = c.fetchone()
     if user is None:
         c.close()
@@ -53,7 +53,7 @@ def create_acc(username, password):
         return True
 
 print(create_acc("selena", "pass"))
-print(user_exists("user"))
+print(user_exists("userhj"))
 print(user_exists("selena"))
 #print(create_acc("selena", "pass"))
 print(checkuser("selena", "pas")) #should return false because the password is missing a s
