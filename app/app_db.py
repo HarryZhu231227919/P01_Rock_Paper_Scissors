@@ -65,35 +65,37 @@ def create_acc(username, password):
     else:
         return False
 
-print(create_acc("selena", "pass"))
-id = get_userid("selena")
-print(user_exists("selena"))
-print(id)
-#print(create_acc("selena", "pass"))
-print(checkuser("selena", "pas")) #should return false because the password is missing a s
+#print(create_acc("selena127", "pass"))
+#id = get_userid("selena127")
+#print(user_exists("selena127"))
+#print(id)
+#print(create_acc("selena", "passs"))
+#print(checkuser("selena127", "pas")) #should return false because the password is missing a s
 
 # Allergies Table===============================================================================
 c.execute("CREATE TABLE if not exists allergies(user_id int primary key, crustacean int, dairy int, egg int, fish int, gluten int, peanut int, sesame int, shellfish int, soy int, treenut int, wheat int)") #sqlite stores booleans as ints with 0 as false and 1 as true
 #method to insert into the allergies table
-def insert_allergy(id, allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
+def insert_allergy(allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
     c = db.cursor()
-    c.execute('INSERT INTO allergies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', (id, allergy[0], allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10]))
-    c.close()
+    c.execute('INSERT INTO allergies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', (allergy[0], allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10], allergy[11]))
     db.commit()
+    c.close()
+
 
 #also need method to update the allergies table with the users changes
-def get_allergy(allergy,user_id):
+def get_allergy(user_id):
     c = db.cursor()
-    c.execute('SELECT * FROM allergies WHERE user_id = ?;', [str(user_id)])
-    allergy_info = c.fetchone()[0]
+    c.execute('SELECT * FROM allergies WHERE user_id = ?;', (user_id,))
+    allergy_info = c.fetchone()
+    c.close()
     if allergy_info is None:
-        c.close()
         return ""
     else:
-        c.close()
         return allergy_info
 #need to make test cases for both methods
-
+test = (1,0,0,0,0,0,0,0,0,0,0,1)
+print(insert_allergy(test))
+print(get_allergy(2))
 # Cuisine Table===========================================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")
 try: 
