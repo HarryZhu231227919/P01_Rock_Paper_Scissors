@@ -119,7 +119,7 @@ def translate(image_url, title, recipe_url, cuisine):
     # print(image_url)
     # print(title)
     # print(recipe_url)
-    print(cuisine)
+    #print(cuisine)
     path = request.path
     index1= (path.index("http")) #index of the first time http shows up which is for the recipe url
     index2 = (path.index("http", path.index("http")+1)) #index of the second time http shows up which is for the image url
@@ -163,6 +163,20 @@ def specificRecipe():
         #         ingredient_qstring += requests.form[name]
         # # allergies string
         #requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': ingredient_qstring, }) 
+
+@app.route("/cocktail", methods = ["GET"])
+def cocktail():
+    url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+    res = requests.get(url).json() #request to get random recipe
+    title = res.get('drinks')[0].get("strDrink") #gets the recipe title of that random recipe
+    image_url = res.get('drinks')[0].get('strDrinkThumb') #gets the recipe image of that random recipe
+    instruction = res.get('drinks')[0].get('strInstructions')
+    ingredients = []
+    num = 1
+    while res.get('drinks')[0].get(f'strIngredient{num}') != None:
+        ingredients.append(res.get('drinks')[0].get(f'strIngredient{num}'))
+        num += 1
+    return render_template("cocktail.html", recipe_title = title, img_src = image_url, instr = instruction, ingr = ingredients)
 
 @app.route("/logout")
 def logout():

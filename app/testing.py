@@ -20,10 +20,10 @@
 # # print(res.json()['hits'][0]['recipe']['cuisineType']) 
 
 # #testing the spoonacular API here: 
-import requests
-#res = requests.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=12643cbc7c944fc18030685f17426c85").json() #request to get random recipe
-res = requests.get("https://api.spoonacular.com/recipes/random?apiKey=12643cbc7c944fc18030685f17426c85&number=1&intolerances=seafood,dairy").json()
-print(res.get('recipes')[0].get('title')) #gets the recipe title of that random recipe
+# import requests
+# #res = requests.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=12643cbc7c944fc18030685f17426c85").json() #request to get random recipe
+# res = requests.get("https://api.spoonacular.com/recipes/random?apiKey=12643cbc7c944fc18030685f17426c85&number=1&intolerances=seafood,dairy").json()
+# print(res.get('recipes')[0].get('title')) #gets the recipe title of that random recipe
 #print(res.get('recipes')[0].get('image')) #gets the recipe image of that random recipe
 
 
@@ -35,7 +35,7 @@ print(res.get('recipes')[0].get('title')) #gets the recipe title of that random 
 # print(string[index2:])
 
 #testing google translate api
-# import requests
+import requests
 
 # f = open('app/keys/key_googleTranslate.txt')
 # g_key = f.read() #google translate key
@@ -57,3 +57,12 @@ print(res.get('recipes')[0].get('title')) #gets the recipe title of that random 
 
 # print(response.text)
 
+# testing cocktail recipe
+url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+res = requests.get(url).json() #request to get random recipe
+title = res.get('drinks')[0].get("strDrink") #gets the recipe title of that random recipe
+image_url = res.get('drinks')[0].get('strDrinkThumb') #gets the recipe image of that random recipe
+
+print(title)
+print(image_url)
+print(res)

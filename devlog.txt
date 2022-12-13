@@ -168,3 +168,21 @@ HarryZ -- 2022-12-12 14:04
 --------------------------------------------------------------
 I fixed the user_exists method inside the database
 ==============================================================
+
+SelenaH, WanyingL -- 2022-12-12 14:05
+--------------------------------------------------------------
+started working on register page: registering an account worked
+- need to incorporate storing allergies in the db  
+==============================================================
+
+WanyingL -- 2022-12-8 14:05
+--------------------------------------------------------------
+got random cocktail page(api, flack, html) to work
+
+to-do list:
+- profile page
+- (flask) check if user is loggin before rendering the page
+- check allergy table methods
+- need another cuisine to language table for edamam api 
+- specificRecipe page also need to get ingredient input from user 
+==============================================================
