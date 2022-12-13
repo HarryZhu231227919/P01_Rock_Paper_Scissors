@@ -191,3 +191,10 @@ HarryZ -- 2022-12-13 13:01
 --------------------------------------------------------------
 I fixed the other database methods and also added a get_userid method. I also tested some of the methods.
 ==============================================================
+
+HarryZ -- 2022-12-13 16:04
+--------------------------------------------------------------
+I mdified the create_account method to insert a table for allergies. The default values 
+will all be 0 which is equivalent to false. You can use the new method that I created, update_allergy, to change
+the info on whether you have an allergy or not. I added the test cases for the allergy methods.
+==============================================================
