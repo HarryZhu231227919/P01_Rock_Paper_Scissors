@@ -198,3 +198,7 @@ I mdified the create_account method to insert a table for allergies. The default
 will all be 0 which is equivalent to false. You can use the new method that I created, update_allergy, to change
 the info on whether you have an allergy or not. I added the test cases for the allergy methods.
 ==============================================================
+
+SelenaH, WanyingL -- 2022-12-13 18:27
+--------------------------------------------------------------
+finished up register page: registering an account works and stores the checkboxed allergies into the allergies table
