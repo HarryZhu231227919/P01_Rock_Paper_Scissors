@@ -6,7 +6,7 @@ c = db.cursor()
 
 # User Table==========================================================================================
 c.execute("CREATE TABLE if not Exists users(user_id INTEGER primary key, username TEXT, password TEXT)")
-
+c.execute("CREATE TABLE if not exists allergies(user_id int primary key, crustacean int, dairy int, egg int, fish int, gluten int, peanut int, sesame int, shellfish int, soy int, treenut int, wheat int)") #sqlite stores booleans as ints with 0 as false and 1 as true
 
 def checkuser(username, password): #checks if user's login is correct
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -59,6 +59,7 @@ def create_acc(username, password):
         id += 1
     if not user_exists(username): #user with username doesn't exist
         c.execute('INSERT INTO users VALUES (?, ?, ?);', (id, username, password))
+        c.execute('INSERT INTO allergies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', (id,0,0,0,0,0,0,0,0,0,0,0))
         db.commit()
         c.close()
         return True
@@ -73,11 +74,22 @@ def create_acc(username, password):
 #print(checkuser("selena127", "pas")) #should return false because the password is missing a s
 
 # Allergies Table===============================================================================
-c.execute("CREATE TABLE if not exists allergies(user_id int primary key, crustacean int, dairy int, egg int, fish int, gluten int, peanut int, sesame int, shellfish int, soy int, treenut int, wheat int)") #sqlite stores booleans as ints with 0 as false and 1 as true
 #method to insert into the allergies table
-def insert_allergy(allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
+def update_allergy(allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
     c = db.cursor()
-    c.execute('INSERT INTO allergies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', (allergy[0], allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10], allergy[11]))
+    c.execute('''UPDATE allergies 
+    SET crustacean = ?,
+    dairy = ?,
+    egg = ?,
+    fish = ?, 
+    gluten = ?, 
+    peanut = ? ,
+    sesame = ? ,
+    shellfish = ?, 
+    soy = ? ,
+    treenut = ?, 
+    wheat = ?
+    WHERE user_id = ?;''', (allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10], allergy[11], allergy[0]))
     db.commit()
     c.close()
 
@@ -92,10 +104,17 @@ def get_allergy(user_id):
         return ""
     else:
         return allergy_info
-#need to make test cases for both methods
-test = (1,0,0,0,0,0,0,0,0,0,0,1)
-print(insert_allergy(test))
-print(get_allergy(2))
+
+
+#Test cases for both methods
+#create_acc("marc","vicky")
+#id = get_userid("marc")
+#test = (id,1,1,1,0,0,0,1,0,1,0,1)
+#update_allergy(test)
+#c.execute('SELECT * FROM allergies WHERE user_id = ?;',(id,))
+#text = c.fetchone()
+#print(text)
+
 # Cuisine Table===========================================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")
 try: 
@@ -126,11 +145,10 @@ def get_lang(cursine_type):
     c = db.cursor()
     c.execute('SELECT language FROM spoonacular_cuisines WHERE cursine_type = ?;', [str(cursine_type)])
     lang = c.fetchone()[0]
+    c.close()
     if lang is None:
-        c.close()
         return ""
     else:
-        c.close()
         return lang
 
 #print(get_lang("African"))    
