@@ -57,7 +57,7 @@ def create_acc(username, password):
         id = 0
     else:
         id += 1
-    if not user_exists(username): #user with username doesn't exist
+    if not user_exists(username): #user with username doesn't exist/ is made
         c.execute('INSERT INTO users VALUES (?, ?, ?);', (id, username, password))
         c.execute('INSERT INTO allergies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', (id,0,0,0,0,0,0,0,0,0,0,0))
         db.commit()
@@ -75,7 +75,8 @@ def create_acc(username, password):
 
 # Allergies Table===============================================================================
 #method to insert into the allergies table
-def update_allergy(allergy): #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
+def update_allergy(allergy): 
+    #allergy is a tuple that holds the int value (0 is false and 1 is true) and matches with the category of the table above
     c = db.cursor()
     c.execute('''UPDATE allergies 
     SET crustacean = ?,
@@ -89,7 +90,8 @@ def update_allergy(allergy): #allergy is a tuple that holds the int value (0 is 
     soy = ? ,
     treenut = ?, 
     wheat = ?
-    WHERE user_id = ?;''', (allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10], allergy[11], allergy[0]))
+    WHERE user_id = ?;''', 
+    (allergy[1], allergy[2], allergy[3], allergy[4], allergy[5], allergy[6], allergy[7], allergy[8], allergy[9], allergy[10], allergy[11], allergy[0]))
     db.commit()
     c.close()
 
@@ -107,13 +109,13 @@ def get_allergy(user_id):
 
 
 #Test cases for both methods
-#create_acc("marc","vicky")
-#id = get_userid("marc")
-#test = (id,1,1,1,0,0,0,1,0,1,0,1)
-#update_allergy(test)
-#c.execute('SELECT * FROM allergies WHERE user_id = ?;',(id,))
-#text = c.fetchone()
-#print(text)
+# create_acc("marc","vicky")
+# id = get_userid("marc")
+# test = (id,1,1,True,False,0,0,1,0,1,0,1)
+# update_allergy(test)
+# c.execute('SELECT * FROM allergies WHERE user_id = ?;',(id,))
+# text = c.fetchone()
+# print(text)
 
 # Cuisine Table===========================================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")

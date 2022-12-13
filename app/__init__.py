@@ -5,22 +5,14 @@ from app_db import *
 app = Flask(__name__)
 app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
-f = open('keys/key_edamam.txt', 'r') #accesses the file
+f = open('app/keys/key_edamam.txt', 'r') #accesses the file
 e_key = f.read() #edamam key
-f = open('keys/key_spoonacular.txt', 'r')
+f = open('app/keys/key_spoonacular.txt', 'r')
 s_key = f.read() #spoonacular key
-f = open('keys/key_googleTranslate.txt')
+f = open('app/keys/key_googleTranslate.txt')
 g_key = f.read() #google translate key
-f = open('keys/id_edamam.txt')
+f = open('app/keys/id_edamam.txt')
 e_id = f.read()
-# f = open('app/keys/key_edamam.txt', 'r') #accesses the file
-# e_key = f.read() #edamam key
-# f = open('app/keys/key_spoonacular.txt', 'r')
-# s_key = f.read() #spoonacular key
-# f = open('app/keys/key_googleTranslate.txt')
-# g_key = f.read() #google translate key
-# f = open('app/keys/id_edamam.txt')
-# e_id = f.read()
 
 @app.route("/", methods=['GET', 'POST'])
 def login_page():
@@ -64,14 +56,58 @@ def register():
         return render_template("register.html")
     else:
         if (create_acc(request.form.get("username"), request.form.get("password"))):
-            return render_template("register.html", error="User already exists.")
-        else:
-            if(request.form.get("Crustacean"))
-            allergies = ()
-            insert_allergy(get_userid(request.form.get("username"),))
+            allergies = [get_userid(request.form.get("username"))]
+            if request.form.get("Crustacean"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Dairy"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Egg"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Fish"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Gluten"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Peanut"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Seasame"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Shellfish"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            
+            if request.form.get("Soy"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Treenut"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            if request.form.get("Wheat"):
+                allergies.append(True)
+            else:
+                allergies.append(False)
+            #print(allergies)
+            update_allergy(allergies)
             return redirect(url_for("login_page"))
-        #do the registering checks
-        #store user's allergies
+        else:
+            return render_template("register.html", error="User already exists.")
+         
 
 @app.route("/profile", methods=['GET', 'POST'])
 # def profile():
