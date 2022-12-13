@@ -186,3 +186,8 @@ to-do list:
 - need another cuisine to language table for edamam api 
 - specificRecipe page also need to get ingredient input from user 
 ==============================================================
+
+HarryZ -- 2022-12-13 13:01
+--------------------------------------------------------------
+I fixed the other database methods and also added a get_userid method. I also tested some of the methods.
+==============================================================
