@@ -1,0 +1,4 @@
+# P01: Recipes by Rock Paper Scissors
+# api related information 
+- Our cocktail api does not require an api Key, so there is not a file for the cocktail api key.
+- Our edamam api require an api ket in additon to an api id. 
