@@ -5,37 +5,51 @@ db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor()
 
 # User Table==========================================================================================
-c.execute("CREATE TABLE if not Exists users(user_id int primary key, username TEXT, password TEXT)")
-#c.close()
+c.execute("CREATE TABLE if not Exists users(user_id INTEGER primary key, username TEXT, password TEXT)")
+
 
 def checkuser(username, password): #checks if user's login is correct
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute('SELECT password FROM users WHERE username = ?;', [str(username)])
+    c.execute('SELECT password FROM users WHERE username = ?;', (username,))
     correct_password = c.fetchone() #fetches correct password from tuple
+    c.close()
     if correct_password is None:
-        c.close()
         return False
     else:
-        c.close()
         return password == correct_password[0]
 
 def user_exists(username): #checks if a user exists
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute('SELECT username FROM users')
+    c.execute('SELECT user_Id FROM users WHERE username =?;',(username,))
+    id = c.fetchone()
+    if id is None:
+        return False
+    c.execute('SELECT username FROM users WHERE user_id =?;', (id[0],))
     user = c.fetchone()
+    c.close()
     if user is None:
-        c.close()
         return False
     else:
-        c.close()
-        return username == user[0]
+        return True
 
 
+def get_userid(username):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute('SELECT user_Id FROM users WHERE username =?;',(username,))
+    id = c.fetchone()
+    c.close()
+    if id is None:
+        return False
+    return id[0]
 
   
         
-#returns TRUE if another account exists with user, otherwise creates acc
+#returns False if another account exists with user, otherwise creates acc
 def create_acc(username, password): 
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute("select max(user_id) from users")
     id = c.fetchone()[0]
@@ -44,17 +58,17 @@ def create_acc(username, password):
     else:
         id += 1
     if not user_exists(username): #user with username doesn't exist
-        c.execute('INSERT INTO users VALUES (?, ?, ?);', (id, str(username), str(password)) )
-        c.close()
+        c.execute('INSERT INTO users VALUES (?, ?, ?);', (id, username, password))
         db.commit()
-        return False
-    else:
         c.close()
         return True
+    else:
+        return False
 
 print(create_acc("selena", "pass"))
-print(user_exists("userhj"))
+id = get_userid("selena")
 print(user_exists("selena"))
+print(id)
 #print(create_acc("selena", "pass"))
 print(checkuser("selena", "pas")) #should return false because the password is missing a s
 
