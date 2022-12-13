@@ -22,3 +22,4 @@ cd P01_Rock_Paper_Scissors/
 pip install -r requirements.txt
 python3 ./app/__init__.py
 ```
+Finally, open http://127.0.0.1:5000/ in your browser

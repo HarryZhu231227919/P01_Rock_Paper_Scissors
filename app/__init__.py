@@ -66,6 +66,9 @@ def register():
         if (create_acc(request.form.get("username"), request.form.get("password"))):
             return render_template("register.html", error="User already exists.")
         else:
+            if(request.form.get("Crustacean"))
+            allergies = ()
+            insert_allergy(get_userid(request.form.get("username"),))
             return redirect(url_for("login_page"))
         #do the registering checks
         #store user's allergies
