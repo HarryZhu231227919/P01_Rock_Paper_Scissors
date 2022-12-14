@@ -116,7 +116,7 @@ def get_allergy(user_id):
 #c.execute('SELECT * FROM allergies WHERE user_id = ?;',(id,))
 #print(get_allergy(id))
 
-# Cuisine Table===========================================================================================
+# Cuisine Table(using Spoonacular API  ==============================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")
 try: 
     c.executescript("""
@@ -142,9 +142,9 @@ try:
 except:
     pass #we don't need anything to be done when there's an error so we use pass
 
-def get_lang(cursine_type):
+def get_lang1(cursine_type):
     c = db.cursor()
-    c.execute('SELECT language FROM spoonacular_cuisines WHERE cursine_type = ?;', [str(cursine_type)])
+    c.execute('SELECT language FROM spoonacular_cuisines WHERE cursine_type = ?;', (cursine_type,))
     lang = c.fetchone()[0]
     c.close()
     if lang is None:
@@ -152,7 +152,49 @@ def get_lang(cursine_type):
     else:
         return lang
 
-#print(get_lang("African"))    
+#print(get_lang1("African"))    
+
+# Cuisine Table (using EDAMAM Recipe API)=====================================================
+c.execute("CREATE TABLE if not Exists edamam_cuisines(cursine_type text primary key, language text)")
+try: 
+    c.executescript("""
+    INSERT INTO edamam_cuisines VALUES("american", "en");
+    INSERT INTO edamam_cuisines VALUES("asian", "zh-CN"); 
+    INSERT INTO edamam_cuisines VALUES("british", "en"); 
+    INSERT INTO edamam_cuisines VALUES("carribean", "en"); 
+    INSERT INTO edamam_cuisines VALUES("central europe", "de"); 
+    INSERT INTO edamam_cuisines VALUES("chinese", "zh-CN"); 
+    INSERT INTO edamam_cuisines VALUES("eastern European", "bg");   
+    INSERT INTO edamam_cuisines VALUES("french", "fr");
+    INSERT INTO edamam_cuisines VALUES("greek", "el"); 
+    INSERT INTO edamam_cuisines VALUES("indian", "hi"); 
+    INSERT INTO edamam_cuisines VALUES("italian", "it"); 
+    INSERT INTO edamam_cuisines VALUES("japanese", "ja"); 
+    INSERT INTO edamam_cuisines VALUES("korean", "ko"); 
+    INSERT INTO edamam_cuisines VALUES("mediterranean", "ar"); 
+    INSERT INTO edamam_cuisines VALUES("mexican", "es"); 
+    INSERT INTO edamam_cuisines VALUES("middle eastern", "fa"); 
+    INSERT INTO edamam_cuisines VALUES("nordic", "da"); 
+    INSERT INTO edamam_cuisines VALUES("south american", "es"); 
+    INSERT INTO edamam_cuisines VALUES("south east asian", "th"); 
+    INSERT INTO edamam_cuisines VALUES("world", ""); 
+    """)
+except:
+    pass
+
+
+def get_lang2(cursine_type):
+    c = db.cursor()
+    c.execute('SELECT language FROM edamam_cuisines WHERE cursine_type = ?;', (cursine_type,))
+    lang = c.fetchone()[0]
+    c.close()
+    if lang is None:
+        return ""
+    else:
+        return lang
+
+
+#print(get_lang2("asian")) 
 
 db.commit()
 
