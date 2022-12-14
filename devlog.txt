@@ -202,3 +202,9 @@ the info on whether you have an allergy or not. I added the test cases for the a
 SelenaH, WanyingL -- 2022-12-13 18:27
 --------------------------------------------------------------
 finished up register page: registering an account works and stores the checkboxed allergies into the allergies table
+
+HarryZ -- 2022-12-14 14:01
+--------------------------------------------------------------
+I created a new table for the edimam api and it contains all the cuisine types and the languages that correspond with it. I also made a 
+method that returns the language when given a cuisine type.
+==============================================================
