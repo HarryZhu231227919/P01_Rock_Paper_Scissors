@@ -193,7 +193,10 @@ def specificRecipe():
     if (request.method == 'GET'): #just shows the specific recipe form
         return render_template("specificrecipe.html")
     else:
+        q_string = ""
+        allergies = get_allergy(get_userid(session.get("username")))
         url = "https://api.edamam.com/api/recipes/v2"
+        res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': "rice and beef", 'healthLabels': "No-oil-added"})
         # # to prepare query string to search in api
         # ingredient_qstring = ""
         # for i in range(5):

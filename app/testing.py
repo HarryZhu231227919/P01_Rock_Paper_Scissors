@@ -58,11 +58,11 @@ import requests
 # print(response.text)
 
 # testing cocktail recipe
-url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-res = requests.get(url).json() #request to get random recipe
-title = res.get('drinks')[0].get("strDrink") #gets the recipe title of that random recipe
-image_url = res.get('drinks')[0].get('strDrinkThumb') #gets the recipe image of that random recipe
+# url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+# res = requests.get(url).json() #request to get random recipe
+# title = res.get('drinks')[0].get("strDrink") #gets the recipe title of that random recipe
+# image_url = res.get('drinks')[0].get('strDrinkThumb') #gets the recipe image of that random recipe
 
-print(title)
-print(image_url)
-print(res)
+# print(title)
+# print(image_url)
+# print(res)
