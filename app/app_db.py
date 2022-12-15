@@ -100,14 +100,17 @@ def update_allergy(allergy):
 def get_allergy(user_id):
     c = db.cursor()
     c.execute('SELECT * FROM allergies WHERE user_id = ?;', (user_id,))
+    columns=["crustacean", "dairy", "egg", "fish", "gluten", "peanut", "sesame", "shellfish", "soy", "treenut", "wheat"]
     allergy_info = c.fetchone()
+    a_string = ""
+    #for loop to iterate through 1 to 11 check if allergy_info(i) == 0 or 1 and if allergy_info(i)==1 then add columns[i] to a_string
     c.close()
     if allergy_info is None:
         return ""
     else:
         return allergy_info
 
-
+get_allergy(0)
 #Test cases for both methods
 #create_acc("marc","vicky")
 #id = get_userid("marc")
