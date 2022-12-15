@@ -102,15 +102,17 @@ def get_allergy(user_id):
     c.execute('SELECT * FROM allergies WHERE user_id = ?;', (user_id,))
     columns=["crustacean", "dairy", "egg", "fish", "gluten", "peanut", "sesame", "shellfish", "soy", "treenut", "wheat"]
     allergy_info = c.fetchone()
-    a_string = ""
-    #for loop to iterate through 1 to 11 check if allergy_info(i) == 0 or 1 and if allergy_info(i)==1 then add columns[i] to a_string
-    c.close()
     if allergy_info is None:
         return ""
-    else:
-        return allergy_info
+    a_string = ""
+    for x in range(11):
+        if allergy_info[x]==1:
+            a_string+=columns[x] + ", "
+    c.close()
+    a_string = a_string[:len(a_string)-2]
+    return a_string
 
-get_allergy(0)
+# print(get_allergy(1) + "|")
 #Test cases for both methods
 #create_acc("marc","vicky")
 #id = get_userid("marc")
