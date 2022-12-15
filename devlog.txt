@@ -208,3 +208,9 @@ HarryZ -- 2022-12-14 14:01
 I created a new table for the edimam api and it contains all the cuisine types and the languages that correspond with it. I also made a 
 method that returns the language when given a cuisine type.
 ==============================================================
+
+HarryZ -- 2022-12-15 13:59
+--------------------------------------------------------------
+I made a new html file that will contain the code for the user profile. It will include the navbar that shows all the options, like the other
+webpages. I added some text to it.
+==============================================================
