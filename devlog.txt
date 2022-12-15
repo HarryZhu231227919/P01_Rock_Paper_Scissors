@@ -1,21 +1,3 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-* rename this file devlog.txt
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
- modify appropriately.
-Each entry should begin with the following format:
- firstL -- TIMESTAMP\n
-e.g.: 
-clydeS -- 2999-12-31 23:59
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Rock Paper Scissors
 Wanying Li (PM)
 Sebastian Ching
@@ -23,7 +5,7 @@ Selena Ho
 Harry Zhu
 pd 8
 ---------------------
-P01 
+P01 RECIPES
 
  ______   ______   __   __   __       ______   _______     
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
@@ -175,6 +157,11 @@ started working on register page: registering an account worked
 - need to incorporate storing allergies in the db  
 ==============================================================
 
+SebastianC -- 2022-12-12 14:05
+--------------------------------------------------------------
+worked on register.html
+==============================================================
+
 WanyingL -- 2022-12-8 14:05
 --------------------------------------------------------------
 got random cocktail page(api, flack, html) to work
@@ -202,6 +189,7 @@ the info on whether you have an allergy or not. I added the test cases for the a
 SelenaH, WanyingL -- 2022-12-13 18:27
 --------------------------------------------------------------
 finished up register page: registering an account works and stores the checkboxed allergies into the allergies table
+==============================================================
 
 HarryZ -- 2022-12-14 14:01
 --------------------------------------------------------------
@@ -209,8 +197,32 @@ I created a new table for the edimam api and it contains all the cuisine types a
 method that returns the language when given a cuisine type.
 ==============================================================
 
+SebastianC, SelenaH, WanyingL -- 2022-12-15 14:05
+--------------------------------------------------------------
+worked on specificRecipe page (html and flask)
+discussed the mechanics of displaying our specific recipes
+==============================================================
+
 HarryZ -- 2022-12-15 13:59
 --------------------------------------------------------------
 I made a new html file that will contain the code for the user profile. It will include the navbar that shows all the options, like the other
 webpages. I added some text to it.
+==============================================================
+
+SelenaH, WanyingL -- 2022-12-15 14:05
+--------------------------------------------------------------
+worked on get_allergies for specificRecipe page
+==============================================================
+
+SebastianC -- 2022-12-15 14:05
+--------------------------------------------------------------
+worked on specificRecipe.html
+==============================================================
+
+WanyingL -- 2022-12-15 
+--------------------------------------------------------------
+worked on profile page (flask and html)
+- need get allergies method to be completed
+- need if statements in html for each allergy and tick them off
+if the user selected them when register 
 ==============================================================

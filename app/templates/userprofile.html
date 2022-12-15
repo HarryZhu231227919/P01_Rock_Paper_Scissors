@@ -28,7 +28,7 @@
             </ul>
         </div>
 
-        <a class="navbar-brand" href="#"> User Profile</a>
+        <a class="navbar-brand" href="/profile"> User Profile</a>
         <form action="/logout">
             <button class="navbar-brand" type="submit">Logout</button>
         </form>
@@ -37,12 +37,43 @@
     <br>
     <br>
     <h1>
-        Hello, name!
+        Hello, {{name}}!
     </h1>
     <br>
     <h2>
-        Allergies:
+        Allergies: {{allergies}}
     </h2>
+
+    <form action="/register" method="post">
+
+        <h5>Please edit the allergies that apply to you</h5>
+    
+        <input type="checkbox" id="allergy1" name="Crustacean" value=True>
+        <label for="allergy1"> Crustacean</label><br>
+        <input type="checkbox" id="allergy2" name="Dairy" value=True>
+        <label for="allergy2"> Dairy</label><br>
+        <input type="checkbox" id="allergy3" name="Egg" value=True>
+        <label for="allergy3"> Egg</label><br>
+        <input type="checkbox" id="allergy4" name="Fish" value=True>
+        <label for="allergy4"> Fish</label><br>
+        <input type="checkbox" id="allergy5" name="Gluten" value=True>
+        <label for="allergy5"> Gluten</label><br>
+        <input type="checkbox" id="allergy6" name="Peanut" value=True>
+        <label for="allergy6"> Peanut</label><br>
+        <input type="checkbox" id="allergy7" name="Sesame" value=True>
+        <label for="allergy7"> Sesame</label><br>
+        <input type="checkbox" id="allergy8" name="Shellfish" value=True>
+        <label for="allergy8"> Shellfish</label><br>
+        <input type="checkbox" id="allergy9" name="Soy" value=True>
+        <label for="allergy9"> Soy</label><br>
+        <input type="checkbox" id="allergy10" name="Treenut" value=True>
+        <label for="allergy10"> Treenut</label><br>
+        <input type="checkbox" id="allergy11" name="Wheat" value=True>
+        <label for="allergy11"> Wheat</label><br>
+    
+        <input type="submit" value="Submit">
+      </form>
+
 </body>
 
 

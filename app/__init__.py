@@ -110,11 +110,62 @@ def register():
          
 
 @app.route("/profile", methods=['GET', 'POST'])
-# def profile():
-#     if (request.method == 'GET'):
-#         return render_template("profile.html")
-#     else: # when user makes an edit to their allergies
-#         # return the profile page with updated info
+def profile():
+    if (request.method == 'GET'):
+        # add invocation to get allergy method
+        return render_template("userprofile.html", name = session.get("username"), allergies = "under construction")
+    else: # when user makes an edit to their allergies
+        allergies = [get_userid(request.form.get("username"))]
+        if request.form.get("Crustacean"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Dairy"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Egg"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Fish"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Gluten"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Peanut"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Seasame"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Shellfish"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        
+        if request.form.get("Soy"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Treenut"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        if request.form.get("Wheat"):
+            allergies.append(True)
+        else:
+            allergies.append(False)
+        #print(allergies)
+        update_allergy(allergies)
+        # add invocation to get allergy method of newly updated allergies
+        # return the profile page with updated info
+        return render_template("userprofile.html", name = session.get("username"), allergies = "under construction")
 
 @app.route("/randRecipe", methods=['GET', 'POST'])
 def randRecipe():
@@ -193,14 +244,14 @@ def specificRecipe():
     if (request.method == 'GET'): #just shows the specific recipe form
         return render_template("specificrecipe.html")
     else:
-        q_string = request.form.get("ingredients")
-        allergies = get_allergy(get_userid(session["username"]))
-        a_string=""
-        for i in allergies:
-            if (i == 1):
-                a_string += 
-        url = "https://api.edamam.com/api/recipes/v2"
-        res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': q_string, 'healthLabels': "No-oil-added"})
+        # q_string = request.form.get("ingredients")
+        # allergies = get_allergy(get_userid(session["username"]))
+        # a_string=""
+        # for i in allergies:
+        #     if (i == 1):
+        #         a_string += 
+        # url = "https://api.edamam.com/api/recipes/v2"
+         res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': q_string, 'healthLabels': "No-oil-added"})
 
 @app.route("/cocktail", methods = ["GET"])
 def cocktail():
