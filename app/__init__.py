@@ -244,14 +244,27 @@ def specificRecipe():
     if (request.method == 'GET'): #just shows the specific recipe form
         return render_template("specificrecipe.html")
     else:
-        # q_string = request.form.get("ingredients")
-        # allergies = get_allergy(get_userid(session["username"]))
+        q_string = request.form.get("ingredients")
+        allergies = get_allergy(get_userid(session["username"]))
         # a_string=""
         # for i in allergies:
         #     if (i == 1):
         #         a_string += 
         # url = "https://api.edamam.com/api/recipes/v2"
-         res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': q_string, 'healthLabels': "No-oil-added"})
+        res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': q_string, 'healthLabels': allergies})
+        titles = []
+        urls = []
+        img_urls = []
+        cuisines = []
+        ingredients = []
+        for i in range(20):
+            try:
+                titles[i] = res.json()['hits'][i]['recipe']['label']
+                urls[i] = res.json()['hits'][i]['recipe']['url'] 
+                img_urls = res.json()['hits'][i]['recipe']['url']
+                cuisines[i] = res.json()['hits'][i]['recipe']['label']
+                ingredients[i] = res.json()['hits'][0]['recipe']['ingredientLines']
+
 
 @app.route("/cocktail", methods = ["GET"])
 def cocktail():

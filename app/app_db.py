@@ -107,7 +107,7 @@ def get_allergy(user_id):
     a_string = ""
     for x in range(11):
         if allergy_info[x]==1:
-            a_string+=columns[x] + ", "
+            a_string+=columns[x] + "-free, "
     c.close()
     a_string = a_string[:len(a_string)-2]
     return a_string
