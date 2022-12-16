@@ -113,7 +113,9 @@ def register():
 def profile():
     if (request.method == 'GET'):
         # add invocation to get allergy method
-        return render_template("userprofile.html", name = session.get("username"), allergies = "under construction")
+        allergies = get_allergy(get_userid(session.get("username")))
+        print(allergies)
+        return render_template("userprofile.html", name = session.get("username"), allergies = allergies)
     else: # when user makes an edit to their allergies
         allergies = [get_userid(request.form.get("username"))]
         if request.form.get("Crustacean"):
@@ -164,8 +166,9 @@ def profile():
         #print(allergies)
         update_allergy(allergies)
         # add invocation to get allergy method of newly updated allergies
+        allergies = get_allergy(get_userid(session.get("username")))
         # return the profile page with updated info
-        return render_template("userprofile.html", name = session.get("username"), allergies = "under construction")
+        return render_template("userprofile.html", name = session.get("username"), allergies = allergies)
 
 @app.route("/randRecipe", methods=['GET', 'POST'])
 def randRecipe():
@@ -252,18 +255,18 @@ def specificRecipe():
         #         a_string += 
         # url = "https://api.edamam.com/api/recipes/v2"
         res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': q_string, 'healthLabels': allergies})
-        titles = []
-        urls = []
-        img_urls = []
-        cuisines = []
-        ingredients = []
-        for i in range(20):
-            try:
-                titles[i] = res.json()['hits'][i]['recipe']['label']
-                urls[i] = res.json()['hits'][i]['recipe']['url'] 
-                img_urls = res.json()['hits'][i]['recipe']['url']
-                cuisines[i] = res.json()['hits'][i]['recipe']['label']
-                ingredients[i] = res.json()['hits'][0]['recipe']['ingredientLines']
+        # titles = []
+        # urls = []
+        # img_urls = []
+        # cuisines = []
+        # ingredients = []
+        # for i in range(20):
+        #     try:
+        #         titles[i] = res.json()['hits'][i]['recipe']['label']
+        #         urls[i] = res.json()['hits'][i]['recipe']['url'] 
+        #         img_urls = res.json()['hits'][i]['recipe']['url']
+        #         cuisines[i] = res.json()['hits'][i]['recipe']['label']
+        #         ingredients[i] = res.json()['hits'][0]['recipe']['ingredientLines']
 
 
 @app.route("/cocktail", methods = ["GET"])

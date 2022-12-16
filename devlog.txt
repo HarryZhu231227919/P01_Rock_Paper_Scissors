@@ -219,10 +219,15 @@ SebastianC -- 2022-12-15 14:05
 worked on specificRecipe.html
 ==============================================================
 
-WanyingL -- 2022-12-15 
+WanyingL -- 2022-12-15 17:27
 --------------------------------------------------------------
 worked on profile page (flask and html)
 - need get allergies method to be completed
 - need if statements in html for each allergy and tick them off
 if the user selected them when register 
+==============================================================
+
+WanyingL -- 2022-12-16 16:05
+--------------------------------------------------------------
+finished user profile (html, flask)
 ==============================================================
