@@ -10,7 +10,8 @@
 
 <body>
   <h1>
-    REGISTER:
+    REGISTER
+    <hr>
   </h1>
 
   <h3>
@@ -21,11 +22,20 @@
     {{error}}
   </h4>
 
-  <form action="/register" method="post">
-    Username: <input type="text" name="username"> </br>
-    Password: <input type="text" name="password"> </br>
+  <form action= "/register" method="POST">
+    <p> Username </p>
+  <input type="text" name="username" placeholder= "Enter your username">
+  <br>
+  <br>
+  <p> Password </p>
+  <input type="password" name="password1" placeholder= "Enter your passwod">
+  <br>
+  <br>
+  <p> Retype password</p>
+  <input type="password" name="password2" placeholder= "Confirm your password">
 
-    <br>
+  <br>
+  <br>
 
     <h5>Please Check the allergies that apply to you</h5>
 
