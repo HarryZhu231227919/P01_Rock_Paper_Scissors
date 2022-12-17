@@ -252,3 +252,9 @@ WanyingL -- 2022-12-16 22:05
 --------------------------------------------------------------
 finished profile page (html + flask)
 ==============================================================
+
+HarryZ -- 2022-12-15 13:59
+--------------------------------------------------------------
+I polished up the html for the register and login page. I made the password input not visible on the screen. 
+I also made a ligt text appear inside the password and username box that will disappear once you type in something. 
+==============================================================
