@@ -41,13 +41,6 @@ def homePage():
         title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
         image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
         recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
-    # print(title.lower().replace(" ", "-"))
-    # print(recipe_url.strip('-'))
-    # print(recipe_url.__contains__(title.lower().replace(" ", "-")))
-    # if title.replace(" ", "-") in recipe_url:
-    #     print("TRUEEEEEEEEEEE")
-    # else: 
-    #     print("FALSEEEEE")
     return render_template("home.html", img_src = image_url, recipe_title = title, url = recipe_url)
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -114,10 +107,10 @@ def profile():
     if (request.method == 'GET'):
         # add invocation to get allergy method
         allergies = get_allergy(get_userid(session.get("username")))
-        print(allergies)
+        #print(allergies)
         return render_template("userprofile.html", name = session.get("username"), allergies = allergies)
     else: # when user makes an edit to their allergies
-        allergies = [get_userid(request.form.get("username"))]
+        allergies = [get_userid(session.get("username"))]
         if request.form.get("Crustacean"):
             allergies.append(True)
         else:
@@ -150,7 +143,6 @@ def profile():
             allergies.append(True)
         else:
             allergies.append(False)
-        
         if request.form.get("Soy"):
             allergies.append(True)
         else:
@@ -163,10 +155,9 @@ def profile():
             allergies.append(True)
         else:
             allergies.append(False)
-        #print(allergies)
         update_allergy(allergies)
-        # add invocation to get allergy method of newly updated allergies
         allergies = get_allergy(get_userid(session.get("username")))
+        print(allergies)
         # return the profile page with updated info
         return render_template("userprofile.html", name = session.get("username"), allergies = allergies)
 
@@ -202,26 +193,15 @@ def randRecipe():
             cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
         return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, cuisine = cuisine, clicked = False)
 
-#@app.route("/randRecipe/translate#image_url=<string:image_url>&title=<string:title>&recipe_url=<string:recipe_url>&cuisine=<string:cuisine>", methods=['GET'])
+
 @app.route("/randRecipe/translate/<string:title>/<path:cuisine>/<path:recipe_url>/<path:image_url>", methods = ['GET'])    
 #@app.route("/randRecipe/translate/<image_url>/<title>/<recipe_url>/<cuisine>", methods=['GET'])  
 def translate(image_url, title, recipe_url, cuisine):
-    # print("---------")
-    # print(request.path)
-    # print("----------")
-    # print(image_url)
-    # print(title)
-    # print(recipe_url)
-    #print(cuisine)
     path = request.path
     index1= (path.index("http")) #index of the first time http shows up which is for the recipe url
     index2 = (path.index("http", path.index("http")+1)) #index of the second time http shows up which is for the image url
     recipe = path[index1:index2]
     image = path[index2:]
-    # print("======")
-    # print(recipe, image)
-    # print("=====")
-    # get the translation through google translate api
     url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
     if cuisine == "None":
         target_lan = "ja"
