@@ -114,12 +114,12 @@ def get_allergy(user_id):
 
 # print(get_allergy(1) + "|")
 #Test cases for both methods
-#create_acc("marc","vicky")
-#id = get_userid("marc")
-#test = (id,1,1,True,False,0,0,1,0,1,0,1)
-#update_allergy(test)
+create_acc("marc","vicky")
+id = get_userid("marc")
+test = (id,1,1,True,False,0,0,0,0,0,0,0) # expect crustancean-free, dairy-free, egg-free but got dairy-free, egg-free, fish-free
+update_allergy(test)
 #c.execute('SELECT * FROM allergies WHERE user_id = ?;',(id,))
-#print(get_allergy(id))
+print(get_allergy(id))
 
 # Cuisine Table(using Spoonacular API  ==============================================================================
 c.execute("CREATE TABLE if not Exists spoonacular_cuisines(cursine_type text primary key, language text)")

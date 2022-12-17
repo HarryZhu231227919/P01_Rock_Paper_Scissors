@@ -229,5 +229,6 @@ if the user selected them when register
 
 WanyingL -- 2022-12-16 16:05
 --------------------------------------------------------------
-finished user profile (html, flask)
+90% finished user profile (html, flask)
+discovered get_allergies method workes but not working correctly
 ==============================================================
