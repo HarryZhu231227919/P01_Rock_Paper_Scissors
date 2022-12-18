@@ -244,7 +244,7 @@ def specificRecipe():
         #     try:
         #         titles[i] = res.json()['hits'][i]['recipe']['label']
         #         urls[i] = res.json()['hits'][i]['recipe']['url'] 
-        #         img_urls = res.json()['hits'][i]['recipe']['url']
+        #         img_urls = res.json()['hits'][i]['recipe']['images']['REGULAR']['url']
         #         cuisines[i] = res.json()['hits'][i]['recipe']['label']
         #         ingredients[i] = res.json()['hits'][0]['recipe']['ingredientLines']
 
