@@ -49,7 +49,7 @@
     <br>
 
     {% for i in range(titles|length), 3: %} <div class="container text-center"> <div class="row">
-    {% for j in range(i, , 3) and j in range(titles|length): %}
+    {% for j in range(i, titles|length, 3) and j in range(titles|length): %}
           <div class="col">
             <p>s{{recipe_title[j]}}</p>
             <p>a{{translation[j]}}</p>
@@ -94,6 +94,7 @@
         </tr>
       </tbody>
     </table>-->
+    
   </body>
 
 </html>
