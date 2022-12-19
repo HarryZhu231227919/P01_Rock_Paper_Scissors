@@ -203,10 +203,13 @@ def translate(image_url, title, recipe_url, cuisine):
     recipe = path[index1:index2]
     image = path[index2:]
     url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
+    print(cuisine )
+    print(cuisine == "None")
+    print(g_key)
     if cuisine == "None":
         target_lan = "ja"
     else:
-        target_lan = get_lang(cuisine)
+        target_lan = get_lang1(cuisine)
     payload = f"source=en&target={target_lan}&q={title}" 
     headers = {
         "content-type": "application/x-www-form-urlencoded",
@@ -216,7 +219,7 @@ def translate(image_url, title, recipe_url, cuisine):
     }
     response = requests.request("POST", url, data=payload, headers=headers)
     # {"data":{"translations":[{"translatedText":"スコッチエッグ"}]}}
-    # print(response.json().get("data").get("translations")[0].get("translatedText"))
+    print(response.json().get("data").get("translations")[0].get("translatedText"))
     translation = response.json().get("data").get("translations")[0].get("translatedText")
     # print(translation)
     return render_template("randrecipe.html", img_src = image, recipe_title = title, recipe_url = recipe, translation = translation, clicked = True)
