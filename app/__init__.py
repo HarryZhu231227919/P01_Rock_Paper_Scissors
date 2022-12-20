@@ -241,7 +241,7 @@ def specificRecipe():
         cuisines = []
         ingredients = []
         list_len = len(res.json()['hits'])
-        for i in range(1):
+        for i in range(3):
             # print(i)
             # print(res.json()['hits'][i]['recipe']['label'])
             titles.append(res.json()['hits'][i]['recipe']['label'])
