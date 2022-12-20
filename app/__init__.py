@@ -157,7 +157,7 @@ def profile():
             allergies.append(False)
         update_allergy(allergies)
         allergies = get_allergy(get_userid(session.get("username")))
-        print(allergies)
+        #print(allergies)
         # return the profile page with updated info
         return render_template("userprofile.html", name = session.get("username"), allergies = allergies)
 
@@ -203,9 +203,6 @@ def translate(image_url, title, recipe_url, cuisine):
     recipe = path[index1:index2]
     image = path[index2:]
     url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
-    print(cuisine )
-    print(cuisine == "None")
-    print(g_key)
     if cuisine == "None":
         target_lan = "ja"
     else:
@@ -219,7 +216,7 @@ def translate(image_url, title, recipe_url, cuisine):
     }
     response = requests.request("POST", url, data=payload, headers=headers)
     # {"data":{"translations":[{"translatedText":"スコッチエッグ"}]}}
-    print(response.json().get("data").get("translations")[0].get("translatedText"))
+    # print(response.json().get("data").get("translations")[0].get("translatedText"))
     translation = response.json().get("data").get("translations")[0].get("translatedText")
     # print(translation)
     return render_template("randrecipe.html", img_src = image, recipe_title = title, recipe_url = recipe, translation = translation, clicked = True)
@@ -230,26 +227,30 @@ def specificRecipe():
     if (request.method == 'GET'): #just shows the specific recipe form
         return render_template("specificrecipe.html")
     else:
-        q_string = request.form.get("ingredients")
+        q_string = request.form["ingredients"]
+        #print(q_string)
         allergies = get_allergy(get_userid(session["username"]))
-        # a_string=""
-        # for i in allergies:
-        #     if (i == 1):
-        #         a_string += 
-        # url = "https://api.edamam.com/api/recipes/v2"
+        # print(allergies)
+        url = "https://api.edamam.com/api/recipes/v2"
         res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'q': q_string, 'healthLabels': allergies})
-        # titles = []
-        # urls = []
-        # img_urls = []
-        # cuisines = []
-        # ingredients = []
-        # for i in range(20):
-        #     try:
-        #         titles[i] = res.json()['hits'][i]['recipe']['label']
-        #         urls[i] = res.json()['hits'][i]['recipe']['url'] 
-        #         img_urls = res.json()['hits'][i]['recipe']['images']['REGULAR']['url']
-        #         cuisines[i] = res.json()['hits'][i]['recipe']['label']
-        #         ingredients[i] = res.json()['hits'][0]['recipe']['ingredientLines']
+        # print(res.json()['hits'][0]['recipe']['label'])
+        # print(len(res.json()['hits']))
+        titles = []
+        urls = []
+        img_urls = []
+        cuisines = []
+        ingredients = []
+        list_len = len(res.json()['hits'])
+        for i in range(1):
+            # print(i)
+            # print(res.json()['hits'][i]['recipe']['label'])
+            titles.append(res.json()['hits'][i]['recipe']['label'])
+            urls.append(res.json()['hits'][i]['recipe']['url']) 
+            img_urls.append(res.json()['hits'][i]['recipe']['images']['REGULAR']['url'])
+            cuisines.append(res.json()['hits'][i]['recipe']['cuisineType'])
+            ingredients.append(res.json()['hits'][i]['recipe']['ingredientLines'])
+        print(titles)
+        return render_template("specificrecipe.html", recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients )
 
 
 @app.route("/cocktail", methods = ["GET"])
