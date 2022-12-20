@@ -253,8 +253,25 @@ WanyingL -- 2022-12-16 22:05
 finished profile page (html + flask)
 ==============================================================
 
-HarryZ -- 2022-12-15 13:59
+HarryZ -- 2022-12-18 13:59
 --------------------------------------------------------------
 I polished up the html for the register and login page. I made the password input not visible on the screen. 
 I also made a ligt text appear inside the password and username box that will disappear once you type in something. 
+==============================================================
+
+SebastianC -- 2022-12-18 14:05
+--------------------------------------------------------------
+worked on bootstrap for home page 
+==============================================================
+
+WanyingL -- 2022-12-18 14:05
+--------------------------------------------------------------
+tested the new key for translate api 
+==============================================================
+
+WanyingL -- 2022-12-18 19:35
+--------------------------------------------------------------
+finished testing newly created translate key
+finished flask for specific recipe
+emailed api key files to Mr. Mykolyk
 ==============================================================
