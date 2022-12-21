@@ -225,7 +225,7 @@ def translate(image_url, title, recipe_url, cuisine):
 @app.route("/specificRecipe", methods=['GET', 'POST'])
 def specificRecipe():
     if (request.method == 'GET'): #just shows the specific recipe form
-        return render_template("specificrecipe.html")
+        return render_template("specificrecipe.html", submitted = False )
     else:
         q_string = request.form["ingredients"]
         #print(q_string)
@@ -250,7 +250,7 @@ def specificRecipe():
             cuisines.append(res.json()['hits'][i]['recipe']['cuisineType'])
             ingredients.append(res.json()['hits'][i]['recipe']['ingredientLines'])
         print(titles)
-        return render_template("specificrecipe.html", recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients )
+        return render_template("specificrecipe.html", list_len= list_len, recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients, submitted = True )
 
 
 @app.route("/cocktail", methods = ["GET"])
