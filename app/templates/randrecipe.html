@@ -6,11 +6,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <h1>Home</h1>
-  <h2>Recipes by Rock Paper Scissors</h2>
 </head>
 
 <body>
- <img src="https://th.bing.com/th/id/R.b7459fd399e8b2f766355886a612fcc9?rik=zbZl21gXzIHhCg&riu=http%3a%2f%2fclipartmag.com%2fimages%2fvines-clipart-27.png&ehk=3msY1PwS7RE8al2FRyJcsVa8LF%2b4DL4MdfC0edHAJn4%3d&risl=&pid=ImgRaw&r=0" class="rounded float-end" alt="...">
 
 
   <nav class="navbar navbar-expand-sm fixed-top" style="background-color: #e3f2fd;">
@@ -38,31 +36,53 @@
       <button class="navbar-brand" type="submit">Logout</button>
     </form>
   </nav>
+ <img src="https://th.bing.com/th/id/R.b7459fd399e8b2f766355886a612fcc9?rik=zbZl21gXzIHhCg&riu=http%3a%2f%2fclipartmag.com%2fimages%2fvines-clipart-27.png&ehk=3msY1PwS7RE8al2FRyJcsVa8LF%2b4DL4MdfC0edHAJn4%3d&risl=&pid=ImgRaw&r=0" class="rounded float-end" alt="...">
+ <img src="https://th.bing.com/th/id/R.b7459fd399e8b2f766355886a612fcc9?rik=zbZl21gXzIHhCg&riu=http%3a%2f%2fclipartmag.com%2fimages%2fvines-clipart-27.png&ehk=3msY1PwS7RE8al2FRyJcsVa8LF%2b4DL4MdfC0edHAJn4%3d&risl=&pid=ImgRaw&r=0" class="rounded float-start" alt="...">
 
   <br>
   <br>
 
+<div class="container-fluid">
+<div class ="position-relative">
+<div class ="position-absolute top-15 start-50 translate-middle">
+   <h2>Recipes by Rock Paper Scissors</h2>
+  </div>
+  
+  <br>
+  <br>
+  
+  <div class ="position-absolute top-75 start-50 translate-middle">
   <p>Random Recipe:</p>
-  <img src="{{img_src}}">
+  </div>
+  
+  <br>
+  <br>
+   <div class ="position-absolute bottom-15 start-50 translate-middle-x">
   <a href={{recipe_url}}>
     <h2>{{recipe_title}}</h2>
   </a>
-
-  <p>{{ingrdients}}</p>
-
-  <form action="/randRecipe" method="POST">
-    <button type="submit">get a random recipe</button>
-  </form>
-
+  </div>
+  <br>
+  <br>
+  <br>
+  
+  <div class ="position-absolute top-60 start-50 translate-middle-x">
+  <img src="{{img_src}}">
   {% if clicked == False %} 
-  <!--<form action="/randRecipe/translate#image_url={{img_src}}&title={{recipe_title}}&recipe_url={{recipe_url}}&cuisine={{cuisine}}" > -->
   <form action="/randRecipe/translate/{{recipe_title}}/{{cuisine}}/{{recipe_url}}/{{img_src}}">
-    <button type="submit">translate the title</button>
+    <button type="submit">Translate the title</button>
     <!--write an if statement when the recipe doesn't have a specified cuisine, don't show the translate freature-->
   </form>
   {% endif %}
+  <form action="/randRecipe" method="POST">
+    <button type="submit">Get a random recipe</button>
+  </form>
+   <h1>{{translation}}</h1>
+  </div>
+  </div>
+  </div>
 
-  <h1>{{translation}}</h1>
+<!--<form action="/randRecipe/translate#image_url={{img_src}}&title={{recipe_title}}&recipe_url={{recipe_url}}&cuisine={{cuisine}}" > -->
 
 </body>
 
