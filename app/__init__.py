@@ -251,9 +251,9 @@ def specificRecipe():
                 cuisines.append(res.json()['hits'][i]['recipe']['cuisineType'])
                 ingredients.append(res.json()['hits'][i]['recipe']['ingredientLines'])
             except:
-                error = "invalid ingredient(s)"
+                return render_template("specificrecipe.html", error = "invalid ingredient", submitted = False )
         print(titles)
-        return render_template("specificrecipe.html", error = error, list_len= list_len, recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients, submitted = True )
+        return render_template("specificrecipe.html", list_len= list_len, recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients, submitted = True )
 
 
 @app.route("/cocktail", methods = ["GET"])
