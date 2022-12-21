@@ -244,13 +244,16 @@ def specificRecipe():
         for i in range(3):
             # print(i)
             # print(res.json()['hits'][i]['recipe']['label'])
-            titles.append(res.json()['hits'][i]['recipe']['label'])
-            urls.append(res.json()['hits'][i]['recipe']['url']) 
-            img_urls.append(res.json()['hits'][i]['recipe']['images']['REGULAR']['url'])
-            cuisines.append(res.json()['hits'][i]['recipe']['cuisineType'])
-            ingredients.append(res.json()['hits'][i]['recipe']['ingredientLines'])
+            try: 
+                titles.append(res.json()['hits'][i]['recipe']['label'])
+                urls.append(res.json()['hits'][i]['recipe']['url']) 
+                img_urls.append(res.json()['hits'][i]['recipe']['images']['REGULAR']['url'])
+                cuisines.append(res.json()['hits'][i]['recipe']['cuisineType'])
+                ingredients.append(res.json()['hits'][i]['recipe']['ingredientLines'])
+            except:
+                error = "invalid ingredient(s)"
         print(titles)
-        return render_template("specificrecipe.html", list_len= list_len, recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients, submitted = True )
+        return render_template("specificrecipe.html", error = error, list_len= list_len, recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients, submitted = True )
 
 
 @app.route("/cocktail", methods = ["GET"])
