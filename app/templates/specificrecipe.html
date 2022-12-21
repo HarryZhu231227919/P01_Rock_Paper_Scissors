@@ -8,11 +8,11 @@
   <h1>Home</h1>
   <br>
   <br>
-  <h2>Recipes by Rock Paper Scissors</h2>
 </head>
 
 
 <body>
+
   <nav class="navbar navbar-expand-sm fixed-top" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <!-- Links -->
@@ -35,41 +35,60 @@
     <form action="/logout">
       <button class="navbar-brand" type="submit">Logout</button>
     </form>
-  </nav>
+  </nav> 
+  
+  
+<div class="container-fluid">
+<div class ="position-relative">
+<div class ="position-absolute top-15 start-50 translate-middle">
+   <h2>Recipes by Rock Paper Scissors</h2>
+  </div>
+  </div>
+  </div>
 
   {% if submitted == False %}
+   <img src="https://th.bing.com/th/id/R.b7459fd399e8b2f766355886a612fcc9?rik=zbZl21gXzIHhCg&riu=http%3a%2f%2fclipartmag.com%2fimages%2fvines-clipart-27.png&ehk=3msY1PwS7RE8al2FRyJcsVa8LF%2b4DL4MdfC0edHAJn4%3d&risl=&pid=ImgRaw&r=0" class="rounded float-end" alt="...">
+ <img src="https://th.bing.com/th/id/R.b7459fd399e8b2f766355886a612fcc9?rik=zbZl21gXzIHhCg&riu=http%3a%2f%2fclipartmag.com%2fimages%2fvines-clipart-27.png&ehk=3msY1PwS7RE8al2FRyJcsVa8LF%2b4DL4MdfC0edHAJn4%3d&risl=&pid=ImgRaw&r=0" class="rounded float-start" alt="...">
+  <br>
+  <br>
+  <br>
+  <div class="container text-center">
   <form action="/specificRecipe" method="post">
     <label>Ingredients: </label><br>
-    <textarea name="ingredients" rows="2" cols="50" placeholder="type your ingredient(s) here"></textarea>
+    <textarea name="ingredients" rows="2" cols="50" placeholder="type your ingredient(s) here:"></textarea>
     <br>
     <input type="submit" value="Submit">
   </form>
+  </div>
   
- <h1>{{error}}</h1>
+ <p class = "text-danger">{{error}}</p>
  
   {% else %}
 
-
-
-  <div class="container text-center">
-
-    <div class="row align-items-center">
-
-      {% for i in range(list_len): %}
+<br>
+<br>
+<div class="container text-center">
+      {% for i in range(0, list_len, 3): %}
       <div class="col">
-    
-        <img src="{{img_urls[i]}}">
-        <a href={{recipe_url[i]}}>
-          <h2>{{recipe_title[i]}}</h2>
+      {% for j in range(i, i+3): %}
+      <div class="row align-items-center">
+      <div class="col">
+        <img src="{{img_urls[j]}}">
+        <a href={{recipe_url[j]}}>
+          <h2>{{recipe_title[j]}}</h2>
         </a>
-        <h3>{{cuisines[i]}}</h3>
-        <p>{{ingts[i]}}</p>
+        <h3>{{cuisines[j]}}</h3>
+        <p>{{ingts[j]}}</p>
       </div>
       {% endfor %}
-    </div>
+      </div>
   </div>
+  {% endfor %}
+   </div>
 
+ 
   {% endif %}
+  
   
 
 

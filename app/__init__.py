@@ -241,7 +241,7 @@ def specificRecipe():
         cuisines = []
         ingredients = []
         list_len = len(res.json()['hits'])
-        for i in range(3):
+        for i in range(10):
             # print(i)
             # print(res.json()['hits'][i]['recipe']['label'])
             try: 
@@ -251,7 +251,7 @@ def specificRecipe():
                 cuisines.append(res.json()['hits'][i]['recipe']['cuisineType'])
                 ingredients.append(res.json()['hits'][i]['recipe']['ingredientLines'])
             except:
-                return render_template("specificrecipe.html", error = "invalid ingredient", submitted = False )
+                return render_template("specificrecipe.html", error = "Invalid ingredient!", submitted = False )
         print(titles)
         return render_template("specificrecipe.html", list_len= list_len, recipe_title = titles, recipe_url = urls, img_urls = img_urls, cuisines = cuisines, ingts = ingredients, submitted = True )
 
