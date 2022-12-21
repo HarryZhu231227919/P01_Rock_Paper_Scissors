@@ -3,9 +3,10 @@ import requests
 
 url =  "https://api.edamam.com/api/recipes/v2"
 
-res = requests.get(url, params={'type':'public', 'app_id':"97c8bd4c", 'app_key':"99402c4f99681503751e94b03de8db33", 'q': "udon", 'healthLabels': "No-oil-added"})
+res = requests.get(url, params={'type':'public', 'app_id':"97c8bd4c", 'app_key':"99402c4f99681503751e94b03de8db33", 'q': "beef", 'health': ["gluten-free", "egg-free"]})
 
-# print(res.json()['hits'][0]['recipe']['label']) # prints the name of the first chicken recipe 
+print(res.json()['hits'][3]['recipe']['label']) # prints the name of the first chicken recipe 
+print(len(res.json()['hits']))
 # print()
 # # print(res.json())
 # #print(res.json()['hits'][0]['recipe']['url']) 

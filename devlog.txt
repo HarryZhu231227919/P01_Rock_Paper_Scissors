@@ -253,25 +253,52 @@ WanyingL -- 2022-12-16 22:05
 finished profile page (html + flask)
 ==============================================================
 
-HarryZ -- 2022-12-18 13:59
+HarryZ -- 2022-12-19 13:59
 --------------------------------------------------------------
 I polished up the html for the register and login page. I made the password input not visible on the screen. 
 I also made a ligt text appear inside the password and username box that will disappear once you type in something. 
 ==============================================================
 
-SebastianC -- 2022-12-18 14:05
+SebastianC -- 2022-12-19 14:05
 --------------------------------------------------------------
 worked on bootstrap for home page 
 ==============================================================
 
-WanyingL -- 2022-12-18 14:05
+WanyingL -- 2022-12-19 14:05
 --------------------------------------------------------------
 tested the new key for translate api 
 ==============================================================
 
-WanyingL -- 2022-12-18 19:35
+WanyingL -- 2022-12-19 19:35
 --------------------------------------------------------------
 finished testing newly created translate key
 finished flask for specific recipe
 emailed api key files to Mr. Mykolyk
+==============================================================
+
+WanyingL, SebastianC -- 2022-12-20 14:05
+--------------------------------------------------------------
+started to fix bugs discovered when showing website to Mr. Mykolyk
+==============================================================
+
+WanyingL, SebastianC -- 2022-12-20 20:15
+--------------------------------------------------------------
+added color for error messeges
+added bootstrap for home, random recipe, specific recipe, and cocktail page
+got api and flask for specific recipe page working
+==============================================================
+
+WanyingL -- 2022-12-21 01:20
+--------------------------------------------------------------
+edited db method get_allergies to return a list
+edited profile page and specific page in correspondence to 
+    the change in get_allergies method
+finished checking allergies: change healthLabels to health in api argument
+added a check of login status for each page
+got translate to work (hopefully)
+
+to-do's:
+display cusine type in random recipe
+bootstrap for profile page
+image display failed on translate page
 ==============================================================
