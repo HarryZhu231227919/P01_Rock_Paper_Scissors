@@ -8,7 +8,6 @@ Selena: Flask/APIs
 Harry:  Frontend/DB  
 # API Cards
 - [EDAMAM Recipe API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_recipies.md)  
-- [Spoonacular API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_FoodAPI.md)
 - [Cocktail API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_TheCocktailDB.md)
 - [Google Translate API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_google-translate-api.md)
 # Launch Codes
