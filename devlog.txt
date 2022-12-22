@@ -303,10 +303,12 @@ bootstrap for profile page
 image display failed on translate page
 ==============================================================
 
-WanyingL -- 2022-12-21 20:13
+WanyingL -- 2022-12-21 00:33
 --------------------------------------------------------------
 finally got translate function from random recipe page working 
+added styling to all pages except login and register
+fixing gird in specific recipe
 
 to-do's:
-bootstrap for profile page, login page, and register page
+bootstrap for login page, and register page
 ==============================================================
