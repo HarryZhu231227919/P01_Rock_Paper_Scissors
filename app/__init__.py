@@ -228,7 +228,7 @@ def randRecipe():
                 print(response.json().get("data"))
                 translation = response.json().get("data").get("translations")[0].get("translatedText")
                 # print(translation)
-                translation = "testingdfd;slkgmsdfmfvafs;dkdj;alsnv;lsdmcfas"
+                # translation = "testingdfd;slkgmsdfmfvafs;dkdj;alsnv;lsdmcfas"
                 return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, translation = translation, cuisine = cuisine)
         else: # option 2
             allergies = get_allergy(get_userid(session["username"]))
