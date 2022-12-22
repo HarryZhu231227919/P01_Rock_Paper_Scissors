@@ -2,10 +2,10 @@
 SITE.db
 
 # api keys
-id_edamam.txt
-key_edamam.txt
-key_googleTranslate.txt
-key_spoonacular.txt 
+app/keys/id_edamam.txt
+app/keys/key_edamam.txt
+app/keys/key_googleTranslate.txt
+app/keys/key_spoonacular.txt 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
