@@ -302,3 +302,11 @@ display cusine type in random recipe
 bootstrap for profile page
 image display failed on translate page
 ==============================================================
+
+WanyingL -- 2022-12-21 20:13
+--------------------------------------------------------------
+finally got translate function from random recipe page working 
+
+to-do's:
+bootstrap for profile page, login page, and register page
+==============================================================

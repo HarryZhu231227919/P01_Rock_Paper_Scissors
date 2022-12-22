@@ -33,29 +33,15 @@ def homePage():
     if 'username' not in session:    # checks if the user is logged in
         return redirect(url_for("login_page"))
 
-    allergies = get_allergy(get_userid(session["username"]))
     url = "https://api.edamam.com/api/recipes/v2"
-    res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'diet': "balanced", 'health': allergies})
-    magic_num = random.randint(0, len(res.json()['hits']))
+    res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'diet': "balanced", 'dishType': "Main course"})
+    list_len = len(res.json()['hits'])
+    magic_num = random.randint(0, list_len-1)
     title = res.json()['hits'][magic_num]['recipe']['label']
     recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
     image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
-    cuisines = res.json()['hits'][magic_num]['recipe']['cuisineType']
+    cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType'][0]
     ingredients = res.json()['hits'][magic_num]['recipe']['ingredientLines']
-
-    '''       
-    url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
-    #print(url)
-    res = requests.get(url).json() #request to get random recipe
-    title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
-    image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-    recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
-    while recipe_url.__contains__(title.lower().replace(" ", "-")) != True: #double checks if the link is valid
-        res = requests.get(url).json()
-        title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
-        image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-        recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
-        '''
     return render_template("home.html", img_src = image_url, recipe_title = title, url = recipe_url)
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -96,8 +82,7 @@ def register():
             if request.form.get("Shellfish"):
                 allergies.append(True)
             else:
-                allergies.append(False)
-            
+                allergies.append(False) 
             if request.form.get("Soy"):
                 allergies.append(True)
             else:
@@ -164,7 +149,7 @@ def profile():
         if request.form.get("Shellfish"):
             allergies.append(True)
         else:
-            allergies.append(False)
+            allergies.append(False)        
         if request.form.get("Soy"):
             allergies.append(True)
         else:
@@ -191,43 +176,72 @@ def profile():
 def randRecipe():
     if 'username' not in session:    # checks if the user is logged in
         return redirect(url_for("login_page"))
-
-    if (request.method == 'GET'): #just displaying the random recipe page
-        allergies = get_allergy(get_userid(session["username"]))
-        url = "https://api.edamam.com/api/recipes/v2"
-        res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies})
-        magic_num = random.randint(0, len(res.json()['hits']))
-        title = res.json()['hits'][magic_num]['recipe']['label']
-        recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
-        image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
-        cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType']
-        ingredients = res.json()['hits'][magic_num]['recipe']['ingredientLines']
-        '''
-        url = f"https://api.spoonacular.com/recipes/random?apiKey={s_key}"
-        res = requests.get(url).json() #request to get random recipe
-        title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
-        image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-        recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
-        cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
-        while recipe_url.__contains__(title.lower().replace(" ", "-")) != True: #double checks if the link is valid
-            res = requests.get(url).json()
-            title = res.get('recipes')[0].get('title') #gets the recipe title of that random recipe
-            image_url = res.get('recipes')[0].get('image') #gets the recipe image of that random recipe
-            recipe_url = res.get('recipes')[0].get('sourceUrl') #gets the recipe link of that random recipe
-            cuisine = res.get('recipes')[0].get('cuisine') #gets the recipe cuisine type
-        #print(res.get('recipes')[0])
-        '''
-        return render_template("randrecipe.html", img_src=image_url, recipe_title=title, recipe_url = recipe_url, cuisine = cuisine, clicked = False)
+    
+    if (request.method == 'GET'): 
+        return render_template("randrecipe.html")
     else:
-        allergies = get_allergy(get_userid(session["username"]))
-        url = "https://api.edamam.com/api/recipes/v2"
-        res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies})
-        magic_num = random.randint(0, len(res.json()['hits']))
-        title = res.json()['hits'][magic_num]['recipe']['label']
-        recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
-        image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
-        cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType'][0]
-        return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, cuisine = cuisine, clicked = False)
+        if "option1" in request.form:
+            if request.form['option1'] == 'Option 1':
+                allergies = get_allergy(get_userid(session["username"]))
+                url = "https://api.edamam.com/api/recipes/v2"
+                res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies, 'dishType': "Main course"})
+                list_len = len(res.json()['hits'])
+                magic_num = random.randint(0, list_len-1)
+                print(magic_num)
+                title = res.json()['hits'][magic_num]['recipe']['label']
+                recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
+                image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
+                cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType'][0]
+                ingredients = res.json()['hits'][magic_num]['recipe']['ingredientLines']
+                if str(cuisine).__contains__("["):
+                    cuisine = str(cuisine)[2:-2]
+                #print(cuisine)
+                target_lan = get_lang2(cuisine)
+
+                if target_lan == "" or target_lan == "en":
+                    try:
+                        magic_num = random.randint(0, len(res.json()['hits']))
+                        title = res.json()['hits'][magic_num]['recipe']['label']
+                        recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
+                        image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
+                        cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType'][0]
+                        ingredients = res.json()['hits'][magic_num]['recipe']['ingredientLines']
+                        if str(cuisine).__contains__("["):
+                            cuisine = str(cuisine)[2:-2]
+                        #print(cuisine)
+                        target_lan = get_lang2(cuisine)
+                    except:
+                        pass # to ensure that the recipe's orgin language is not English
+                # print(target_lan)
+                # print(title)
+                url = "https://google-translate1.p.rapidapi.com/language/translate/v2"               
+                payload = f"source=en&target={target_lan}&q={title}" 
+                print(payload)
+                headers = {
+                    "content-type": "application/x-www-form-urlencoded",
+                    "Accept-Encoding": "application/gzip",
+                    "X-RapidAPI-Key": str(g_key),
+                    "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+                }
+                print(headers)
+                response = requests.request("POST", url, data=payload, headers=headers)
+                print(response.json().get("data"))
+                translation = response.json().get("data").get("translations")[0].get("translatedText")
+                # print(translation)
+                translation = "testingdfd;slkgmsdfmfvafs;dkdj;alsnv;lsdmcfas"
+                return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, translation = translation, cuisine = cuisine)
+        else: # option 2
+            allergies = get_allergy(get_userid(session["username"]))
+            url = "https://api.edamam.com/api/recipes/v2"
+            res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies, 'dishType': "Main course"})
+            list_len = len(res.json()['hits'])
+            magic_num = random.randint(0, list_len-1)
+            print(magic_num)
+            title = res.json()['hits'][magic_num]['recipe']['label']
+            recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
+            image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
+            cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType'][0]
+            return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, cuisine = cuisine)
 
 
 @app.route("/randRecipe/translate/<string:title>/<path:cuisine>/<path:recipe_url>/<path:image_url>", methods = ['GET'])    
@@ -237,6 +251,7 @@ def translate(image_url, title, recipe_url, cuisine):
         return redirect(url_for("login_page"))
 
     path = request.path
+    print(path)
     index1= (path.index("http")) #index of the first time http shows up which is for the recipe url
     index2 = (path.index("http", path.index("http")+1)) #index of the second time http shows up which is for the image url
     recipe = path[index1:index2]
