@@ -75,7 +75,7 @@ def register():
                 allergies.append(True)
             else:
                 allergies.append(False)
-            if request.form.get("Seasame"):
+            if request.form.get("Sesame"):
                 allergies.append(True)
             else:
                 allergies.append(False)
@@ -142,7 +142,7 @@ def profile():
             allergies.append(True)
         else:
             allergies.append(False)
-        if request.form.get("Seasame"):
+        if request.form.get("Sesame"):
             allergies.append(True)
         else:
             allergies.append(False)
