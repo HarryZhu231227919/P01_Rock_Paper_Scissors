@@ -51,11 +51,13 @@
         class="rounded float-start" alt="...">
 
     <div class="container-fluid" style="margin-top:100px">
+
         <h1 class="text-center">
             Hello, {{name}}!
         </h1>
         <br>
-        <h2 class ="text-center">
+
+        <h2 class="text-center">
             Allergies: {{allergies}}
         </h2>
         <br>
@@ -63,184 +65,187 @@
         {% if method == "get": %}
         <form class="row justify-content-md-center mt-3" action="/profile" method="GET">
 
-            <h5 class= "text-center">Please edit the allergies that apply to you</h5>
+            <h5 class="text-center">Please edit the allergies that apply to you</h5>
 
             <div class="col-3">
-            {% if "crustacean" in allergies: %}
-            <input type="checkbox" id="allergy1" name="Crustacean" value=True checked>
-            <label for="allergy1"> Crustacean</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy1" name="Crustacean" value=True>
-            <label for="allergy1"> Crustacean</label><br>
-            {% endif %}
+                {% if "crustacean" in allergies: %}
+                <input type="checkbox" id="allergy1" name="Crustacean" value=True checked>
+                <label for="allergy1"> Crustacean</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy1" name="Crustacean" value=True>
+                <label for="allergy1"> Crustacean</label><br>
+                {% endif %}
 
-            {% if "dairy" in allergies: %}
-            <input type="checkbox" id="allergy2" name="Dairy" value=True checked>
-            <label for="allergy2"> Dairy</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy2" name="Dairy" value=True>
-            <label for="allergy2"> Dairy</label><br>
-            {% endif %}
+                {% if "dairy" in allergies: %}
+                <input type="checkbox" id="allergy2" name="Dairy" value=True checked>
+                <label for="allergy2"> Dairy</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy2" name="Dairy" value=True>
+                <label for="allergy2"> Dairy</label><br>
+                {% endif %}
 
-            {% if "egg" in allergies: %}
-            <input type="checkbox" id="allergy3" name="Egg" value=True checked>
-            <label for="allergy3"> Egg</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy3" name="Egg" value=True>
-            <label for="allergy3"> Egg</label><br>
-            {% endif %}
+                {% if "egg" in allergies: %}
+                <input type="checkbox" id="allergy3" name="Egg" value=True checked>
+                <label for="allergy3"> Egg</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy3" name="Egg" value=True>
+                <label for="allergy3"> Egg</label><br>
+                {% endif %}
 
-            {% if "fish" in allergies: %}
-            <input type="checkbox" id="allergy4" name="Fish" value=True checked>
-            <label for="allergy4"> Fish</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy4" name="Fish" value=True>
-            <label for="allergy4"> Fish</label><br>
-            {% endif %}
+                {% if "fish" in allergies: %}
+                <input type="checkbox" id="allergy4" name="Fish" value=True checked>
+                <label for="allergy4"> Fish</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy4" name="Fish" value=True>
+                <label for="allergy4"> Fish</label><br>
+                {% endif %}
 
-            {% if "gluten" in allergies: %}
-            <input type="checkbox" id="allergy5" name="Gluten" value=True checked>
-            <label for="allergy5"> Gluten</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy5" name="Gluten" value=True>
-            <label for="allergy5"> Gluten</label><br>
-            {% endif %}
+                {% if "gluten" in allergies: %}
+                <input type="checkbox" id="allergy5" name="Gluten" value=True checked>
+                <label for="allergy5"> Gluten</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy5" name="Gluten" value=True>
+                <label for="allergy5"> Gluten</label><br>
+                {% endif %}
 
-            {% if "peanut" in allergies: %}
-            <input type="checkbox" id="allergy6" name="Peanut" value=True checked>
-            <label for="allergy6"> Peanut</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy6" name="Peanut" value=True>
-            <label for="allergy6"> Peanut</label><br>
-            {% endif %}
+                {% if "peanut" in allergies: %}
+                <input type="checkbox" id="allergy6" name="Peanut" value=True checked>
+                <label for="allergy6"> Peanut</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy6" name="Peanut" value=True>
+                <label for="allergy6"> Peanut</label><br>
+                {% endif %}
 
-            {% if "seasame" in allergies: %}
-            <input type="checkbox" id="allergy7" name="Sesame" value=True checked>
-            <label for="allergy7"> Sesame</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy7" name="Sesame" value=True>
-            <label for="allergy7"> Sesame</label><br>
-            {% endif %}
+                {% if "seasame" in allergies: %}
+                <input type="checkbox" id="allergy7" name="Sesame" value=True checked>
+                <label for="allergy7"> Sesame</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy7" name="Sesame" value=True>
+                <label for="allergy7"> Sesame</label><br>
+                {% endif %}
 
-            {% if "soy" in allergies: %}
-            <input type="checkbox" id="allergy9" name="Soy" value=True checked>
-            <label for="allergy9"> Soy</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy9" name="Soy" value=True>
-            <label for="allergy9"> Soy</label><br>
-            {% endif %}
+                {% if "soy" in allergies: %}
+                <input type="checkbox" id="allergy9" name="Soy" value=True checked>
+                <label for="allergy9"> Soy</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy9" name="Soy" value=True>
+                <label for="allergy9"> Soy</label><br>
+                {% endif %}
 
-            {% if "treenut" in allergies: %}
-            <input type="checkbox" id="allergy10" name="Treenut" value=True checked>
-            <label for="allergy10"> Treenut</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy10" name="Treenut" value=True>
-            <label for="allergy10"> Treenut</label><br>
-            {% endif %}
+                {% if "treenut" in allergies: %}
+                <input type="checkbox" id="allergy10" name="Treenut" value=True checked>
+                <label for="allergy10"> Treenut</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy10" name="Treenut" value=True>
+                <label for="allergy10"> Treenut</label><br>
+                {% endif %}
 
-            {% if "wheat" in allergies: %}
-            <input type="checkbox" id="allergy11" name="Wheat" value=True checked>
-            <label for="allergy11"> Wheat</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy11" name="Wheat" value=True>
-            <label for="allergy11"> Wheat</label><br>
-            {% endif %}
-            <input type="submit" value="Submit">
+                {% if "wheat" in allergies: %}
+                <input type="checkbox" id="allergy11" name="Wheat" value=True checked>
+                <label for="allergy11"> Wheat</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy11" name="Wheat" value=True>
+                <label for="allergy11"> Wheat</label><br>
+                {% endif %}
+                <input type="submit" value="Submit">
             </div>
         </form>
-        
+
 
         {% else: %}
 
         <form class="row justify-content-md-center mt-3" action="/profile" method="post">
 
-            <h5 class = "text-center">Please edit the allergies that apply to you</h5>
+            <h5 class="text-center">Please edit the allergies that apply to you</h5>
+            
             <div class="col-3">
 
-            {% if "crustacean" in allergies: %}
-            <input type="checkbox" id="allergy1" name="Crustacean" value=True checked>
-            <label for="allergy1"> Crustacean</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy1" name="Crustacean" value=True>
-            <label for="allergy1"> Crustacean</label><br>
-            {% endif %}
+                {% if "crustacean" in allergies: %}
+                <input type="checkbox" id="allergy1" name="Crustacean" value=True checked>
+                <label for="allergy1"> Crustacean</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy1" name="Crustacean" value=True>
+                <label for="allergy1"> Crustacean</label><br>
+                {% endif %}
 
-            {% if "dairy" in allergies: %}
-            <input type="checkbox" id="allergy2" name="Dairy" value=True checked>
-            <label for="allergy2"> Dairy</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy2" name="Dairy" value=True>
-            <label for="allergy2"> Dairy</label><br>
-            {% endif %}
+                {% if "dairy" in allergies: %}
+                <input type="checkbox" id="allergy2" name="Dairy" value=True checked>
+                <label for="allergy2"> Dairy</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy2" name="Dairy" value=True>
+                <label for="allergy2"> Dairy</label><br>
+                {% endif %}
 
-            {% if "egg" in allergies: %}
-            <input type="checkbox" id="allergy3" name="Egg" value=True checked>
-            <label for="allergy3"> Egg</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy3" name="Egg" value=True>
-            <label for="allergy3"> Egg</label><br>
-            {% endif %}
+                {% if "egg" in allergies: %}
+                <input type="checkbox" id="allergy3" name="Egg" value=True checked>
+                <label for="allergy3"> Egg</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy3" name="Egg" value=True>
+                <label for="allergy3"> Egg</label><br>
+                {% endif %}
 
-            {% if "fish" in allergies: %}
-            <input type="checkbox" id="allergy4" name="Fish" value=True checked>
-            <label for="allergy4"> Fish</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy4" name="Fish" value=True>
-            <label for="allergy4"> Fish</label><br>
-            {% endif %}
+                {% if "fish" in allergies: %}
+                <input type="checkbox" id="allergy4" name="Fish" value=True checked>
+                <label for="allergy4"> Fish</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy4" name="Fish" value=True>
+                <label for="allergy4"> Fish</label><br>
+                {% endif %}
 
-            {% if "gluten" in allergies: %}
-            <input type="checkbox" id="allergy5" name="Gluten" value=True checked>
-            <label for="allergy5"> Gluten</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy5" name="Gluten" value=True>
-            <label for="allergy5"> Gluten</label><br>
-            {% endif %}
+                {% if "gluten" in allergies: %}
+                <input type="checkbox" id="allergy5" name="Gluten" value=True checked>
+                <label for="allergy5"> Gluten</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy5" name="Gluten" value=True>
+                <label for="allergy5"> Gluten</label><br>
+                {% endif %}
 
-            {% if "peanut" in allergies: %}
-            <input type="checkbox" id="allergy6" name="Peanut" value=True checked>
-            <label for="allergy6"> Peanut</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy6" name="Peanut" value=True>
-            <label for="allergy6"> Peanut</label><br>
-            {% endif %}
+                {% if "peanut" in allergies: %}
+                <input type="checkbox" id="allergy6" name="Peanut" value=True checked>
+                <label for="allergy6"> Peanut</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy6" name="Peanut" value=True>
+                <label for="allergy6"> Peanut</label><br>
+                {% endif %}
 
-            {% if "seasame" in allergies: %}
-            <input type="checkbox" id="allergy7" name="Sesame" value=True checked>
-            <label for="allergy7"> Sesame</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy7" name="Sesame" value=True>
-            <label for="allergy7"> Sesame</label><br>
-            {% endif %}
+                {% if "seasame" in allergies: %}
+                <input type="checkbox" id="allergy7" name="Sesame" value=True checked>
+                <label for="allergy7"> Sesame</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy7" name="Sesame" value=True>
+                <label for="allergy7"> Sesame</label><br>
+                {% endif %}
 
-            {% if "soy" in allergies: %}
-            <input type="checkbox" id="allergy9" name="Soy" value=True checked>
-            <label for="allergy9"> Soy</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy9" name="Soy" value=True>
-            <label for="allergy9"> Soy</label><br>
-            {% endif %}
+                {% if "soy" in allergies: %}
+                <input type="checkbox" id="allergy9" name="Soy" value=True checked>
+                <label for="allergy9"> Soy</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy9" name="Soy" value=True>
+                <label for="allergy9"> Soy</label><br>
+                {% endif %}
 
-            {% if "treenut" in allergies: %}
-            <input type="checkbox" id="allergy10" name="Treenut" value=True checked>
-            <label for="allergy10"> Treenut</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy10" name="Treenut" value=True>
-            <label for="allergy10"> Treenut</label><br>
-            {% endif %}
+                {% if "treenut" in allergies: %}
+                <input type="checkbox" id="allergy10" name="Treenut" value=True checked>
+                <label for="allergy10"> Treenut</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy10" name="Treenut" value=True>
+                <label for="allergy10"> Treenut</label><br>
+                {% endif %}
 
-            {% if "wheat" in allergies: %}
-            <input type="checkbox" id="allergy11" name="Wheat" value=True checked>
-            <label for="allergy11"> Wheat</label><br>
-            {% else: %}
-            <input type="checkbox" id="allergy11" name="Wheat" value=True>
-            <label for="allergy11"> Wheat</label><br>
-            {% endif %}
-            <br>
-            <input type="submit" value="Submit" class="btn" style="background-color: #dae2b6;">
+                {% if "wheat" in allergies: %}
+                <input type="checkbox" id="allergy11" name="Wheat" value=True checked>
+                <label for="allergy11"> Wheat</label><br>
+                {% else: %}
+                <input type="checkbox" id="allergy11" name="Wheat" value=True>
+                <label for="allergy11"> Wheat</label><br>
+                {% endif %}
+                <br>
+                <input type="submit" value="Submit" class="btn" style="background-color: #dae2b6;">
             </div>
         </form>
+
         {% endif %}
+        
     </div>
 </body>
 

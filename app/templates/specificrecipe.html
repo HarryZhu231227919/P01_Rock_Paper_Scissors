@@ -54,12 +54,10 @@
 
 
   <div class="container-fluid" style="margin-top:100px">
-        <h2 class="text-center">Recipes by Rock Paper Scissors</h2>
+    <h2 class="text-center">Recipes by Rock Paper Scissors</h2>
   </div>
 
   {% if submitted == False %}
-
-
   <div class="container text-center mt-5">
     <form action="/specificRecipe" method="post">
       <label>Ingredients: </label><br>
@@ -69,12 +67,7 @@
     </form>
   </div>
 
-
   <p class="text-danger text-center">{{error}}</p>
-
-
-
-
 
   {% else %}
   <div class="container" style="margin-top:50px">
@@ -112,12 +105,7 @@
     </div>
     {% endfor %}
   </div>
-
-
   {% endif %}
-
-
-
 
 </body>
 
