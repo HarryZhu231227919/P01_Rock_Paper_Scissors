@@ -185,10 +185,10 @@ def randRecipe():
                 allergies = get_allergy(get_userid(session["username"]))
                 url = "https://api.edamam.com/api/recipes/v2"
                 res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies, 'dishType': "Main course"})
-                print(res.json()['hits'])
+                # print(res.json()['hits'])
                 list_len = len(res.json()['hits'])
                 magic_num = random.randint(0, list_len-1)
-                print(magic_num)
+                # print(magic_num)
                 title = res.json()['hits'][magic_num]['recipe']['label']
                 recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
                 image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
@@ -198,8 +198,10 @@ def randRecipe():
                     cuisine = str(cuisine)[2:-2]
                 #print(cuisine)
                 target_lan = get_lang2(cuisine)
+                # print(target_lan)
 
                 if target_lan == "" or target_lan == "en":
+                    # print("it's going this way----------------")
                     try:
                         magic_num = random.randint(0, len(res.json()['hits']))
                         title = res.json()['hits'][magic_num]['recipe']['label']
@@ -217,16 +219,16 @@ def randRecipe():
                 # print(title)
                 url = "https://google-translate1.p.rapidapi.com/language/translate/v2"               
                 payload = f"source=en&target={target_lan}&q={title}" 
-                print(payload)
+                # print(payload)
                 headers = {
                     "content-type": "application/x-www-form-urlencoded",
                     "Accept-Encoding": "application/gzip",
                     "X-RapidAPI-Key": str(g_key),
                     "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
                 }
-                print(headers)
+                # print(headers)
                 response = requests.request("POST", url, data=payload, headers=headers)
-                print(response.json().get("data"))
+                # print(response.json().get("data"))
                 translation = response.json().get("data").get("translations")[0].get("translatedText")
                 # print(translation)
                 # translation = "testingdfd;slkgmsdfmfvafs;dkdj;alsnv;lsdmcfas"
@@ -237,7 +239,7 @@ def randRecipe():
             res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies, 'dishType': "Main course"})
             list_len = len(res.json()['hits'])
             magic_num = random.randint(0, list_len-1)
-            print(magic_num)
+            # print(magic_num)
             title = res.json()['hits'][magic_num]['recipe']['label']
             recipe_url = res.json()['hits'][magic_num]['recipe']['url'] 
             image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
@@ -266,7 +268,7 @@ def specificRecipe():
         cuisines = []
         ingredients = []
         list_len = len(res.json()['hits'])
-        for i in range(10):
+        for i in range(list_len):
             # print(i)
             # print(res.json()['hits'][i]['recipe']['label'])
             try: 
