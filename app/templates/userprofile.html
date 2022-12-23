@@ -51,20 +51,21 @@
         class="rounded float-start" alt="...">
 
     <div class="container-fluid" style="margin-top:100px">
-        <h1>
+        <h1 class="text-center">
             Hello, {{name}}!
         </h1>
         <br>
-        <h2>
+        <h2 class ="text-center">
             Allergies: {{allergies}}
         </h2>
         <br>
 
         {% if method == "get": %}
-        <form action="/profile" method="GET">
+        <form class="row justify-content-md-center mt-3" action="/profile" method="GET">
 
-            <h5>Please edit the allergies that apply to you</h5>
+            <h5 class= "text-center">Please edit the allergies that apply to you</h5>
 
+            <div class="col-3">
             {% if "crustacean" in allergies: %}
             <input type="checkbox" id="allergy1" name="Crustacean" value=True checked>
             <label for="allergy1"> Crustacean</label><br>
@@ -145,13 +146,16 @@
             <label for="allergy11"> Wheat</label><br>
             {% endif %}
             <input type="submit" value="Submit">
+            </div>
         </form>
+        
 
         {% else: %}
 
-        <form action="/profile" method="post">
+        <form class="row justify-content-md-center mt-3" action="/profile" method="post">
 
-            <h5>Please edit the allergies that apply to you</h5>
+            <h5 class = "text-center">Please edit the allergies that apply to you</h5>
+            <div class="col-3">
 
             {% if "crustacean" in allergies: %}
             <input type="checkbox" id="allergy1" name="Crustacean" value=True checked>
@@ -234,6 +238,7 @@
             {% endif %}
             <br>
             <input type="submit" value="Submit" class="btn" style="background-color: #dae2b6;">
+            </div>
         </form>
         {% endif %}
     </div>

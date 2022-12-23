@@ -54,50 +54,47 @@
 
 
   <div class="container-fluid" style="margin-top:100px">
-    <div class="position-relative">
-      <div class="position-absolute top-15 start-50 translate-middle">
-        <h2>Recipes by Rock Paper Scissors</h2>
-      </div>
-      <br>
-      <br>
+        <h2 class ="text-center">Recipes by Rock Paper Scissors</h2>
 
-      <div class="position-absolute top-75 start-50 translate-middle">
-        <p>Your Random Recipe:</p>
-      </div>
-      <br>
+        <p class="text-center">Your Random Recipe:</p>
+<div class="col text-center">
 
-      <div class="position-absolute bottom-15 start-50 translate-middle-x">
-        <a href={{recipe_url}}>
+            <div class="row">
+                <a href={{recipe_url}}>
           <h2>{{recipe_title}}</h2>
         </a>
-        <h2>{{translation}}</h2>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
+            </div>
 
-      <div class="position-absolute top-60 start-50 translate-middle-x">
-        <img src="{{img_src}}">
-        <br>
+   <div class="row justify-content-md-center">
+<h2>{{translation}}</h2>
+</div>
+
+      
+
+
+         <div class="row justify-content-md-center">
+                <div class="col-6">
+                    <img src="{{img_src}}">
+                </div>
+            </div>
+            
         {% if method == "post" %}
+        <div class="row justify-content-md-center">
         <p>Cuisine Type: {{cuisine}}</p>
+        </div>
+        
         {% endif %}
-        <br>
-        <p>Option 1: Get a random recipe with its title translated in the recipe's orgin language</p>
+
+        <p class="text-center">Option 1: Get a random recipe with its title translated in the recipe's orgin language</p>
         <form action="/randRecipe" method="POST">
           <input type="submit" class="btn" name="option1" value="Option 1" style="background-color: #f4ead5;">
         </form>
-        <br>
-        <p>Option 2: Get a random recipe only</p>
+<br>
+        <p class ="text-center">Option 2: Get a random recipe only</p>
         <form action="/randRecipe" method="POST">
           <input type="submit" name="option2" class="btn" value="Option 2" style="background-color: #DAE2b6;">
         </form>
-      </div>
-
-    </div>
-  </div>
-
+        </div>
 
 </body>
 

@@ -185,6 +185,7 @@ def randRecipe():
                 allergies = get_allergy(get_userid(session["username"]))
                 url = "https://api.edamam.com/api/recipes/v2"
                 res = requests.get(url, params={'type':'public', 'app_id':e_id, 'app_key':e_key, 'health': allergies, 'dishType': "Main course"})
+                print(res.json()['hits'])
                 list_len = len(res.json()['hits'])
                 magic_num = random.randint(0, list_len-1)
                 print(magic_num)
