@@ -196,11 +196,11 @@ def randRecipe():
                 ingredients = res.json()['hits'][magic_num]['recipe']['ingredientLines']
                 if str(cuisine).__contains__("["):
                     cuisine = str(cuisine)[2:-2]
-                #print(cuisine)
+                print(cuisine)
                 target_lan = get_lang2(cuisine)
                 # print(target_lan)
 
-                if target_lan == "" or target_lan == "en":
+                while target_lan == "" or target_lan == "en":
                     # print("it's going this way----------------")
                     try:
                         magic_num = random.randint(0, len(res.json()['hits']))
@@ -211,12 +211,12 @@ def randRecipe():
                         ingredients = res.json()['hits'][magic_num]['recipe']['ingredientLines']
                         if str(cuisine).__contains__("["):
                             cuisine = str(cuisine)[2:-2]
-                        #print(cuisine)
+                        print(cuisine)
                         target_lan = get_lang2(cuisine)
                     except:
                         pass # to ensure that the recipe's orgin language is not English
-                # print(target_lan)
-                # print(title)
+                print(target_lan)
+                print(title)
                 url = "https://google-translate1.p.rapidapi.com/language/translate/v2"               
                 payload = f"source=en&target={target_lan}&q={title}" 
                 # print(payload)
@@ -228,9 +228,13 @@ def randRecipe():
                 }
                 # print(headers)
                 response = requests.request("POST", url, data=payload, headers=headers)
-                # print(response.json().get("data"))
-                translation = response.json().get("data").get("translations")[0].get("translatedText")
-                # print(translation)
+                print(response.json())
+                print("1")
+                #print(response.json().get("data"))
+                #print("2" + response.json().get("data").get("translations")[0])
+                #translation = response.json().get("data").get("translations")[0].get("translatedText")
+                translation = response.json()["data"]["translations"][0]["translatedText"] 
+                print(translation)
                 # translation = "testingdfd;slkgmsdfmfvafs;dkdj;alsnv;lsdmcfas"
                 return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, translation = translation, cuisine = cuisine)
         else: # option 2

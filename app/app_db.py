@@ -168,7 +168,7 @@ try:
     INSERT INTO edamam_cuisines VALUES("american", "en");
     INSERT INTO edamam_cuisines VALUES("asian", "zh-CN"); 
     INSERT INTO edamam_cuisines VALUES("british", "en"); 
-    INSERT INTO edamam_cuisines VALUES("caribean", "en"); 
+    INSERT INTO edamam_cuisines VALUES("caribbean", "en"); 
     INSERT INTO edamam_cuisines VALUES("central europe", "de"); 
     INSERT INTO edamam_cuisines VALUES("chinese", "zh-CN"); 
     INSERT INTO edamam_cuisines VALUES("eastern European", "bg");   
