@@ -200,7 +200,7 @@ def randRecipe():
                 target_lan = get_lang2(cuisine)
                 # print(target_lan)
 
-                while target_lan == "" or target_lan == "en":
+                while target_lan == "" or target_lan == "en" or title.__contains__("’") or title.__contains__(","):
                     # print("it's going this way----------------")
                     try:
                         magic_num = random.randint(0, len(res.json()['hits']))
