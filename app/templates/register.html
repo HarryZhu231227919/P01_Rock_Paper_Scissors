@@ -17,7 +17,7 @@
 
     <h2 class="mt-3 text-center">
       REGISTER YOUR BEAUTIFUL INFO HERE :)
-      <hr>
+      <hr class="line_break">
     </h2>
 
     <h4 class="text-center">
@@ -28,15 +28,27 @@
       {{error}}
     </h4>
 
+    <div class="row justify-content-md-center align-items-center">
+      <div class="col-auto">
+        <label>Already have an account? </label>
+      </div>
+      <div class="col-auto">
+        <form action="/">
+          <button class="btn" style="background-color: #F4ead5;" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
     <form class="row justify-content-md-center mt-3" action="/register" method="POST">
-      <div class="col-3">
-        <p> Username </p>
+      <div class="col-4">
+        <label> Username </label>
         <input type="text" name="username" placeholder="Enter your username">
-        <p> Password </p>
+        <label> Password </label>
         <input type="password" name="password1" placeholder="Enter your passwod">
-        <p> Retype password</p>
+        <label> Retype password</label>
         <input type="password" name="password2" placeholder="Confirm your password">
       </div>
+
       <h5 class="text-center mt-3">Please Check the allergies that apply to you</h5>
 
       <div class="col-3">
@@ -63,9 +75,11 @@
         <input type="checkbox" id="allergy11" name="Wheat" value=True>
         <label for="allergy11"> Wheat</label><br>
 
-        <input type="submit" value="Submit" class="btn" style="background-color: #dae2b6;">
+        <input type="submit" value="Submit" class="btn mt-3" style="background-color: #dae2b6;">
       </div>
+
     </form>
+
   </div>
 
 </body>

@@ -7,8 +7,6 @@ app.secret_key = "fsa932nds02ks3ld93nfjs02ns29rj"
 
 f = open('app/keys/key_edamam.txt', 'r') #accesses the file
 e_key = f.read() #edamam key
-f = open('app/keys/key_spoonacular.txt', 'r')
-s_key = f.read() #spoonacular key
 f = open('app/keys/key_googleTranslate.txt')
 g_key = f.read() #google translate key
 f = open('app/keys/id_edamam.txt')
@@ -49,6 +47,8 @@ def register():
     if (request.method == 'GET'):
         return render_template("register.html")
     else:
+        if request.form['password1'] != request.form['password2']:
+            return render_template("register.html", error="Passwords do not match.")
         if (create_acc(request.form.get("username"), request.form.get("password"))):
             allergies = [get_userid(request.form.get("username"))]
             if request.form.get("Crustacean"):
@@ -242,42 +242,6 @@ def randRecipe():
             image_url = res.json()['hits'][magic_num]['recipe']['images']['REGULAR']['url']
             cuisine = res.json()['hits'][magic_num]['recipe']['cuisineType'][0]
             return render_template("randrecipe.html", img_src = image_url, recipe_title = title, recipe_url = recipe_url, cuisine = cuisine)
-
-
-@app.route("/randRecipe/translate/<string:title>/<path:cuisine>/<path:recipe_url>/<path:image_url>", methods = ['GET'])    
-#@app.route("/randRecipe/translate/<image_url>/<title>/<recipe_url>/<cuisine>", methods=['GET'])  
-def translate(image_url, title, recipe_url, cuisine):
-    if 'username' not in session:    # checks if the user is logged in
-        return redirect(url_for("login_page"))
-
-    path = request.path
-    print(path)
-    index1= (path.index("http")) #index of the first time http shows up which is for the recipe url
-    index2 = (path.index("http", path.index("http")+1)) #index of the second time http shows up which is for the image url
-    recipe = path[index1:index2]
-    image = path[index2:]
-    print(image)
-    url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
-    if str(cuisine).__contains__("["):
-        cuisine = str(cuisine)[2:-2]
-    print(cuisine)
-    target_lan = get_lang2(cuisine)
-    if target_lan == "":
-        target_lan = "ja"
-    payload = f"source=en&target={target_lan}&q={title}" 
-    headers = {
-        "content-type": "application/x-www-form-urlencoded",
-        "Accept-Encoding": "application/gzip",
-        "X-RapidAPI-Key": str(g_key),
-        "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
-    }
-    response = requests.request("POST", url, data=payload, headers=headers)
-    # {"data":{"translations":[{"translatedText":"スコッチエッグ"}]}}
-    # print(response.json().get("data").get("translations")[0].get("translatedText"))
-    translation = response.json().get("data").get("translations")[0].get("translatedText")
-    # print(translation)
-    return render_template("randrecipe.html", img_src = image, recipe_title = title, recipe_url = recipe, translation = translation, clicked = True)
-
 
 @app.route("/specificRecipe", methods=['GET', 'POST'])
 def specificRecipe():

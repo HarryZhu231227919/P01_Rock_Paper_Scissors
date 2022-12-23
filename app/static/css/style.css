@@ -6,3 +6,8 @@
     max-width: 500px;
     position: relative;
 }
+
+.line_break {
+    border-width: 5px;
+    border-color:#ccd6a6;
+}

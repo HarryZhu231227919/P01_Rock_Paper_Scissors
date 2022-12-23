@@ -317,3 +317,10 @@ SelenaH -- 2022-12-22 17:14
 --------------------------------------------------------------
 edited bootstrap for the navbar to include active links
 changed the README to get rid of spoonacular api
+==============================================================
+
+WanyingL -- 2022-12-21 19:34
+--------------------------------------------------------------
+bootstrap and css for login and register page
+added a check of passwords in register
+==============================================================
